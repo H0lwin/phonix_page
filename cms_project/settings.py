@@ -111,9 +111,10 @@ USE_TZ = True
 STATIC_URL = '/static/'
 STATIC_ROOT = os.environ.get('STATIC_ROOT', BASE_DIR / 'staticfiles')
 
-STATICFILES_DIRS = [
-    BASE_DIR / "static",
-]
+# Remove STATICFILES_DIRS to avoid the warning since we're using STATIC_ROOT
+# STATICFILES_DIRS = [
+#     BASE_DIR / "static",  # This was causing the warning
+# ]
 
 # Media files
 MEDIA_URL = '/media/'

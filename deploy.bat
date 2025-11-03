@@ -21,7 +21,7 @@ python manage.py collectstatic --noinput -c
 
 REM Set proper permissions for static files (Windows version)
 echo Setting permissions for static files...
-icacls staticfiles /grant Users:(OI)(CI)R /T
+icacls static /grant Users:(OI)(CI)R /T
 
 REM Set proper permissions for media files (if they exist)
 if exist media (
