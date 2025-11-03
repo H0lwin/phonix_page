@@ -88,6 +88,22 @@
   CSRF_COOKIE_SECURE=True
   ```
 
+## Migration Fix for MySQL Row Size Issue
+
+If you encounter a "Row size too large" error when migrating to MySQL, follow these steps:
+
+1. Create a new migration to skip the problematic migration:
+   ```bash
+   python manage.py makemigrations --empty website
+   ```
+
+2. Edit the new migration file to include the operations from the fixed migrations we've provided.
+
+3. Apply the migrations:
+   ```bash
+   python manage.py migrate
+   ```
+
 ## Server Configuration
 
 - [ ] Install required packages:

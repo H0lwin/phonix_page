@@ -19,7 +19,7 @@ class SiteSettings(models.Model):
     
     # Additional address fields for multiple office locations
     head_office_address = models.TextField(verbose_name="آدرس دفتر مرکزی", default="تهران، خیابان آزادی، پلاک ۱۲۳")
-    branch_office_address = models.TextField(verbose_name="آدرس شعبه", blank=True, default="")
+    branch_office_address = models.TextField(blank=True, verbose_name="آدرس شعبه", default="")
     
     def __str__(self):
         return str(self.site_name)
@@ -65,7 +65,7 @@ class Service(models.Model):
     title = models.CharField(max_length=100, verbose_name="عنوان", default="خدمات")
     icon = models.CharField(max_length=50, verbose_name="آیکون", default="🔧")
     short_description = models.TextField(verbose_name="توضیحات کوتاه", default="توضیحات خدمات")
-    content = models.TextField(verbose_name="محتوا", default="محتوای کامل خدمات")  # Using TextField instead of RichTextField for simplicity
+    content = models.TextField(verbose_name="محتوا", default="محتوای کامل خدمات")
     order = models.PositiveIntegerField(verbose_name="ترتیب", default=0)
     is_active = models.BooleanField(verbose_name="فعال", default=True)
     
