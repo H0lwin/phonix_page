@@ -6,7 +6,7 @@
   - [ ] Set `DEBUG = False`
   - [ ] Update `ALLOWED_HOSTS` with your domain
   - [ ] Set proper `SECRET_KEY`
-  - [ ] Configure database settings for production (PostgreSQL recommended)
+  - [ ] Configure database settings for production (MySQL recommended)
   
 - [ ] Collect static files:
   ```bash
@@ -21,6 +21,71 @@
 - [ ] Create superuser:
   ```bash
   python manage.py createsuperuser
+  ```
+
+## Database Setup (MySQL)
+
+- [ ] Install MySQL server and client:
+  ```bash
+  sudo apt update
+  sudo apt install mysql-server mysql-client libmysqlclient-dev
+  ```
+
+- [ ] Start MySQL service:
+  ```bash
+  sudo systemctl start mysql
+  sudo systemctl enable mysql
+  ```
+
+- [ ] Secure MySQL installation:
+  ```bash
+  sudo mysql_secure_installation
+  ```
+
+- [ ] Create database and user:
+  ```sql
+  CREATE DATABASE shahreraze_cms_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+  CREATE USER 'shahreraze_cms_user'@'localhost' IDENTIFIED BY 'your_strong_password';
+  GRANT ALL PRIVILEGES ON shahreraze_cms_db.* TO 'shahreraze_cms_user'@'localhost';
+  FLUSH PRIVILEGES;
+  ```
+
+## Environment Variables Setup
+
+- [ ] Create a `.env` file in the project root directory:
+  ```bash
+  touch .env
+  ```
+
+- [ ] Generate a secure secret key:
+  ```bash
+  python generate_secret_key.py
+  ```
+
+- [ ] Add the following variables to your `.env` file:
+  ```
+  # Django Security Settings
+  SECRET_KEY=your-generated-secret-key-here
+  DEBUG=False
+  
+  # Host Settings
+  ALLOWED_HOSTS=localhost,127.0.0.1,citysecret.ir,www.citysecret.ir
+  
+  # Database Settings
+  DB_NAME=shahreraze_cms_db
+  DB_USER=shahreraze_cms_user
+  DB_PASSWORD=your_strong_password
+  DB_HOST=localhost
+  DB_PORT=3306
+  
+  # Path Settings
+  STATIC_ROOT=/var/www/phonix-page/static
+  MEDIA_ROOT=/var/www/phonix-page/media
+  
+  # Additional Security Settings
+  SECURE_SSL_REDIRECT=True
+  SESSION_COOKIE_SECURE=True
+  CSRF_COOKIE_SECURE=True
   ```
 
 ## Server Configuration
@@ -50,22 +115,6 @@
   python3 -m venv venv
   source venv/bin/activate
   pip install -r requirements.txt
-  ```
-
-## Environment Variables
-
-- [ ] Set environment variables:
-  ```bash
-  export SECRET_KEY="your-secret-key"
-  export DEBUG=False
-  export ALLOWED_HOSTS="localhost,127.0.0.1,citysecret.ir,www.citysecret.ir"
-  ```
-  
-- [ ] Or create a .env file with the variables:
-  ```
-  SECRET_KEY=your-secret-key
-  DEBUG=False
-  ALLOWED_HOSTS=localhost,127.0.0.1,citysecret.ir,www.citysecret.ir
   ```
 
 ## Apache Configuration
