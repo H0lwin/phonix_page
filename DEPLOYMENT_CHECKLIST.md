@@ -92,15 +92,30 @@
 
 If you encounter a "Row size too large" error when migrating to MySQL, follow these steps:
 
-1. Create a new migration to skip the problematic migration:
+1. The project includes custom migrations (0011 and 0012) that address this issue by breaking down the large migration into smaller parts.
+
+2. Apply the migrations:
    ```bash
-   python manage.py makemigrations --empty website
+   python manage.py migrate
    ```
 
-2. Edit the new migration file to include the operations from the fixed migrations we've provided.
+## Handling Duplicate Column Errors
 
-3. Apply the migrations:
+If you encounter a "Duplicate column name" error:
+
+1. This happens when some fields were already added to the database but Django's migration tracking is out of sync.
+
+2. The project includes migration 0013 that handles this issue by checking for existing columns before adding them.
+
+3. If the error persists, you can reset the migration state:
    ```bash
+   # Backup your database first
+   mysqldump -u shahreraze_cms_user -p shahreraze_cms_db > backup.sql
+   
+   # Remove migration records for the website app
+   mysql -u shahreraze_cms_user -p shahreraze_cms_db -e "DELETE FROM django_migrations WHERE app = 'website';"
+   
+   # Run migrations again
    python manage.py migrate
    ```
 
