@@ -92,7 +92,7 @@
 
 If you encounter a "Row size too large" error when migrating to MySQL, follow these steps:
 
-1. The project includes custom migrations (0011 and 0012) that address this issue by breaking down the large migration into smaller parts.
+1. The project includes custom migrations (0014-0018) that address this issue by splitting the large migration into smaller parts.
 
 2. Apply the migrations:
    ```bash
