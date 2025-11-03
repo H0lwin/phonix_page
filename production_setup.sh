@@ -51,8 +51,8 @@ sudo -u www-data bash -c "
 
 # Set permissions for static files
 echo -e "${YELLOW}Setting permissions for static files...${NC}"
-chmod -R 755 staticfiles/
-chown -R www-data:www-data staticfiles/
+chmod -R 755 static/
+chown -R www-data:www-data static/
 
 # Set permissions for media files (if they exist)
 if [ -d "media" ]; then
@@ -60,6 +60,16 @@ if [ -d "media" ]; then
   chmod -R 755 media/
   chown -R www-data:www-data media/
 fi
+
+# Create environment variables file
+echo -e "${YELLOW}Setting up environment variables...${NC}"
+cat > /var/www/phonix-page/.env << EOF
+SECRET_KEY=$(python3 -c "import secrets; print(secrets.token_urlsafe(50))")
+DEBUG=False
+ALLOWED_HOSTS=localhost,127.0.0.1,citysecret.ir,www.citysecret.ir
+STATIC_ROOT=/var/www/phonix-page/static
+MEDIA_ROOT=/var/www/phonix-page/media
+EOF
 
 # Copy Apache configuration
 echo -e "${YELLOW}Configuring Apache...${NC}"

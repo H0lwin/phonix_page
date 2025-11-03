@@ -28,7 +28,7 @@
 - [ ] Install required packages:
   ```bash
   sudo apt update
-  sudo apt install apache2 libapache2-mod-wsgi-py python3-dev python3-pip
+  sudo apt install apache2 libapache2-mod-wsgi-py3 python3-dev python3-pip
   ```
 
 - [ ] Create project directory:
@@ -52,6 +52,22 @@
   pip install -r requirements.txt
   ```
 
+## Environment Variables
+
+- [ ] Set environment variables:
+  ```bash
+  export SECRET_KEY="your-secret-key"
+  export DEBUG=False
+  export ALLOWED_HOSTS="localhost,127.0.0.1,citysecret.ir,www.citysecret.ir"
+  ```
+  
+- [ ] Or create a .env file with the variables:
+  ```
+  SECRET_KEY=your-secret-key
+  DEBUG=False
+  ALLOWED_HOSTS=localhost,127.0.0.1,citysecret.ir,www.citysecret.ir
+  ```
+
 ## Apache Configuration
 
 - [ ] Copy Apache configuration:
@@ -66,7 +82,7 @@
 
 - [ ] Enable required modules:
   ```bash
-  sudo a2enmod ssl rewrite headers proxy proxy_http
+  sudo a2enmod ssl rewrite headers proxy proxy_http wsgi
   ```
 
 - [ ] Test Apache configuration:

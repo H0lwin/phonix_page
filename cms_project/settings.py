@@ -22,7 +22,8 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-#w@+r!+!+!+!+!+!+!+!+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', 'True') == 'True'
 
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1').split(',')
+# ALLOWED_HOSTS setting - add your domain here
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS', 'localhost,127.0.0.1,citysecret.ir,www.citysecret.ir').split(',')
 
 # Application definition
 
@@ -109,12 +110,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.environ.get('STATIC_ROOT', BASE_DIR / 'staticfiles')
-
-# Remove STATICFILES_DIRS to avoid the warning since we're using STATIC_ROOT
-# STATICFILES_DIRS = [
-#     BASE_DIR / "static",  # This was causing the warning
-# ]
+STATIC_ROOT = os.environ.get('STATIC_ROOT', BASE_DIR / 'static')
 
 # Media files
 MEDIA_URL = '/media/'

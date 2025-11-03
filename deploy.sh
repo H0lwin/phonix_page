@@ -30,8 +30,8 @@ python manage.py collectstatic --noinput -c
 
 # Set proper permissions for static files
 echo -e "${YELLOW}Setting permissions for static files...${NC}"
-chmod -R 755 staticfiles/
-chmod -R 644 staticfiles/**/*
+chmod -R 755 static/
+chmod -R 644 static/**/*
 
 # Set proper permissions for media files (if they exist)
 if [ -d "media" ]; then

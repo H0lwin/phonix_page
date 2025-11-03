@@ -16,8 +16,17 @@ from django.core.wsgi import get_wsgi_application
 sys.path.append('/var/www/phonix-page')
 sys.path.append('/var/www/phonix-page/cms_project')
 
-# Set the Django settings module
+# Set environment variables if not already set
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cms_project.settings')
+
+# Load environment variables from .env file if it exists
+env_file = '/var/www/phonix-page/.env'
+if os.path.exists(env_file):
+    with open(env_file) as f:
+        for line in f:
+            if '=' in line:
+                key, value = line.strip().split('=', 1)
+                os.environ.setdefault(key, value)
 
 try:
     django.setup()
