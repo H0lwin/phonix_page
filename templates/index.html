@@ -4,31 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ site_settings.site_name }}</title>
-    <meta name="description" content="{{ site_settings.site_description }}">
-    <h3>{{ site_settings.service_registration_title }}</h3>
-    <p>{{ site_settings.service_registration_description }}</p>
-    <h3>{{ site_settings.service_loan_title }}</h3>
-    <p>{{ site_settings.service_loan_description }}</p>
-    <h3>{{ site_settings.service_leasing_title }}</h3>
-    <p>{{ site_settings.service_leasing_description }}</p>
-    <h3>{{ site_settings.service_legal_title }}</h3>
-    <h5>{{ site_settings.footer_company_name }}</h5>
-    <p>{{ site_settings.footer_company_description }}</p>
-    <h4>{{ site_settings.footer_address_title }}</h4>
-    <p>{{ site_settings.footer_address|linebreaksbr }}</p>
-    <h4>{{ site_settings.footer_hours_title }}</h4>
-    <p>{{ site_settings.footer_hours|linebreaksbr }}</p>
-    <p>{{ site_settings.service_legal_description }}</p>
-    <h3>{{ site_settings.service_licenses_title }}</h3>
-    <p>{{ site_settings.service_licenses_description }}</p>
-    <h3>{{ site_settings.service_commercial_title }}</h3>
-    <p>{{ site_settings.service_commercial_description }}</p>
-
-    <meta name="description" content="شهر راز - مرکز تخصصی خرید و فروش وام، لیزینگ خودرو، ثبت شرکت و خدمات حقوقی">
-    <meta name="keywords" content="خرید وام, فروش وام, لیزینگ خودرو, ثبت شرکت, خدمات حقوقی, وکالت, ثبت مجوز">
-    <meta name="author" content="Shahrar Financial & Legal Services">
-    <title>شهر راز - مرکز تخصصی خدمات مالی و حقوقی</title>
+    <title>{{ settings.site_name }}</title>
+    <meta name="description" content="{{ settings.description }}">
+    <meta name="keywords" content="{{ settings.meta_keywords }}">
+    <meta name="author" content="{{ settings.site_name }}">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
@@ -122,7 +101,7 @@
         }
 
         /* ================================================================
-           UTILITYCLASSES
+           UTILITY CLASSES
            ================================================================ */
         .container {
             max-width: 1200px;
@@ -408,6 +387,7 @@
             cursor: pointer;
             border: none;
             font-size: var(--font-size-base);
+            font-family: var(--font-primary); /* Add font family */
         }
 
         .btn-primary {
@@ -561,6 +541,323 @@
         .service-card p {
             color: var(--color-text-light);
             line-height: 1.8;
+        }
+
+        /* ================================================================
+           LOAN SERVICES SECTION
+           ================================================================ */
+        .loan-services {
+            padding: var(--spacing-3xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .loan-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .loan-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border-top: 4px solid var(--color-accent);
+            text-align: center;
+        }
+
+        .loan-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .loan-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .loan-card h4 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 700;
+        }
+
+        .loan-card p {
+            color: var(--color-text-light);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.6;
+        }
+
+        .loan-features {
+            list-style: none;
+            text-align: right;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .loan-features li {
+            padding: var(--spacing-xs) 0;
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .loan-features li::before {
+            content: '✓';
+            color: var(--color-success);
+            position: absolute;
+            right: 0;
+        }
+
+        /* ================================================================
+           LEASING SECTION
+           ================================================================ */
+        .leasing {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .leasing::before {
+            content: '';
+            position: absolute;
+            top: -100px;
+            right: -100px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .leasing::after {
+            content: '';
+            position: absolute;
+            bottom: -150px;
+            left: -150px;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border-radius: 50%;
+        }
+
+        .leasing .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .leasing-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-2xl);
+            align-items: center;
+        }
+
+        .leasing-image {
+            position: relative;
+            height: 400px;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .leasing-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, rgba(26, 54, 93, 0.8), rgba(15, 28, 46, 0.9));
+        }
+
+        .leasing-info h3 {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            line-height: 1.3;
+        }
+
+        .leasing-info p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .leasing-benefits {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-xl);
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+
+        .benefit-icon {
+            font-size: var(--font-size-xl);
+            color: var(--color-accent);
+        }
+
+        .benefit-text {
+            font-weight: 500;
+        }
+
+        .leasing-stats {
+            display: flex;
+            gap: var(--spacing-xl);
+        }
+
+        .leasing-stat {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .leasing-stat strong {
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .leasing-stat span {
+            font-size: var(--font-size-sm);
+            opacity: 0.8;
+        }
+
+        /* ================================================================
+           REGISTRATION SERVICES SECTION
+           ================================================================ */
+        .registration {
+            padding: var(--spacing-3xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .registration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .registration-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-xl);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border: 2px solid var(--color-border);
+            text-align: center;
+        }
+
+        .registration-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-xl);
+            border-color: var(--color-accent);
+        }
+
+        .registration-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            display: block;
+            color: var(--color-primary);
+        }
+
+        .registration-card h3 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-md);
+            font-weight: 700;
+        }
+
+        .registration-list {
+            list-style: none;
+            text-align: right;
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .registration-list li {
+            padding: var(--spacing-xs) 0;
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+            position: relative;
+            padding-right: 20px;
+        }
+
+        .registration-list li::before {
+            content: '✓';
+            color: var(--color-success);
+            position: absolute;
+            right: 0;
+        }
+
+        /* ================================================================
+           PROCESS SECTION
+           ================================================================ */
+        .process {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(180deg, var(--color-surface) 0%, white 100%);
+        }
+
+        .process-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: var(--spacing-lg);
+        }
+
+        .process-step {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all var(--transition-base);
+            position: relative;
+            border-right: 4px solid transparent;
+            text-align: center;
+        }
+
+        .process-step:hover {
+            box-shadow: var(--shadow-lg);
+            border-right-color: var(--color-accent);
+            transform: translateY(-5px);
+        }
+
+        .step-number {
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: var(--color-primary-dark);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: var(--font-size-lg);
+            box-shadow: var(--shadow-md);
+        }
+
+        .process-step h4 {
+            font-size: var(--font-size-lg);
+            color: var(--color-primary);
+            margin: var(--spacing-md) 0 var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .process-step p {
+            color: var(--color-text-light);
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
         }
 
         /* ================================================================
@@ -737,138 +1034,146 @@
             font-size: var(--font-size-sm);
         }
 
+        /* Testimonial form styles */
+        .testimonial-form-section {
+            margin-top: var(--spacing-3xl);
+            padding: var(--spacing-xl);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .form-title {
+            text-align: center;
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+            font-weight: 700;
+        }
+
+        .testimonial-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: var(--spacing-xs);
+            font-weight: 600;
+            color: var(--color-text);
+            font-family: var(--font-primary); /* Add font family */
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: var(--spacing-md);
+            border: 2px solid var(--color-border);
+            border-radius: var(--radius-md);
+            font-family: var(--font-primary); /* Add font family */
+            font-size: var(--font-size-base);
+            transition: border-color var(--transition-fast);
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--color-accent);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .testimonial-form .btn {
+            width: 100%;
+            justify-content: center;
+            font-family: var(--font-primary); /* Add font family to button */
+        }
+
         /* ================================================================
-           DASHBOARDS SECTION
+           FAQ SECTION
            ================================================================ */
-        .dashboards {
+        .faq {
             padding: var(--spacing-3xl) 0;
             background-color: var(--color-background);
         }
 
-        .dashboards-info {
-            margin-bottom: var(--spacing-2xl);
-        }
-
-        .dashboards-notice {
-            background: linear-gradient(135deg, #fff3cd 0%, #fff8e1 100%);
-            border-right: 4px solid var(--color-warning);
-            padding: var(--spacing-md) var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-md);
-            color: var(--color-text);
-            line-height: 1.6;
-        }
-
-        .notice-icon {
-            font-size: var(--font-size-2xl);
-        }
-
-        .dashboards-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .dashboard-card {
-            background: white;
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            transition: all var(--transition-base);
-            display: flex;
-            flex-direction: column;
-            border: 2px solid var(--color-border);
-        }
-
-        .dashboard-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-            border-color: var(--color-accent);
-        }
-
-        .card-icon {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-            padding: var(--spacing-md);
-            border-radius: var(--radius-lg);
-            display: inline-block;
-            width: fit-content;
-        }
-
-        .admin-icon {
-            background: linear-gradient(135deg, #e3f2fd, #bbdefb);
-        }
-
-        .chart-icon {
-            background: linear-gradient(135deg, #f3e5f5, #e1bee7);
-        }
-
-        .employee-icon {
-            background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
-        }
-
-        .lawyer-icon {
-            background: linear-gradient(135deg, #fff3e0, #ffe0b2);
-        }
-
-        .dashboard-card h3 {
-            font-size: var(--font-size-xl);
+        .faq h4 {
+            font-family: var(--font-primary); /* Ensure the font is applied to FAQ questions */
+            font-size: var(--font-size-lg);
             color: var(--color-primary);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 700;
+            margin: 0;
+            font-weight: 600;
+            text-align: right;
         }
 
-        .card-description {
-            color: var(--color-text-light);
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
             margin-bottom: var(--spacing-md);
-            font-size: var(--font-size-sm);
+            overflow: hidden;
+            transition: all var(--transition-base);
         }
 
-        .card-features {
-            list-style: none;
-            margin-bottom: var(--spacing-lg);
-            flex-grow: 1;
+        .faq-item.active {
+            box-shadow: var(--shadow-md);
         }
 
-        .card-features li {
-            padding: var(--spacing-xs) 0;
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: var(--spacing-lg);
+            text-align: right;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background-color: var(--color-surface);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            transition: transform var(--transition-base);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-base);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
             color: var(--color-text-light);
-            font-size: var(--font-size-sm);
-        }
-
-        .btn-success {
-            background: linear-gradient(135deg, var(--color-success), #48bb78);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-success:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-info {
-            background: linear-gradient(135deg, #3182ce, #4299e1);
-            color: white;
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-info:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-warning {
-            background: linear-gradient(135deg, var(--color-warning), #ecc94b);
-            color: var(--color-primary-dark);
-            box-shadow: var(--shadow-md);
-        }
-
-        .btn-warning:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
+            line-height: 1.8;
         }
 
         /* ================================================================
@@ -879,7 +1184,6 @@
             background: linear-gradient(180deg, var(--color-surface) 0%, white 100%);
         }
 
-        /* CONTACT INFO STYLES */
         .contact-info {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -904,6 +1208,62 @@
             box-shadow: var(--shadow-lg);
         }
 
+        /* Office addresses section */
+        .office-addresses {
+            margin-top: var(--spacing-2xl);
+            text-align: center;
+        }
+
+        .office-addresses-title {
+            font-size: var(--font-size-2xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-xl);
+            font-weight: 700;
+        }
+
+        .addresses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .address-card {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border-right: 4px solid transparent;
+            text-align: center;
+        }
+
+        .address-card:hover {
+            border-right-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .address-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            color: var(--color-primary);
+        }
+
+        .address-card h4 {
+            font-size: var(--font-size-xl);
+            color: var(--color-primary);
+            margin-bottom: var(--spacing-sm);
+            font-weight: 600;
+        }
+
+        .address-card p {
+            color: var(--color-text-light);
+            font-size: var(--font-size-lg);
+            line-height: 1.6;
+        }
+
         .contact-icon {
             font-size: var(--font-size-4xl);
             margin-bottom: var(--spacing-md);
@@ -922,32 +1282,237 @@
         }
 
         /* ================================================================
+           TRUST SECTION
+           ================================================================ */
+        .trust {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: white;
+            text-align: center;
+        }
+
+        /* Improve contrast for title and subtitle in trust section */
+        .trust .section-title {
+            color: white; /* Keep title white */
+            position: relative;
+        }
+
+        .trust .section-title::after {
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+        }
+
+        .trust .section-subtitle {
+            color: rgba(255, 255, 255, 0.9); /* Lighter subtitle for better contrast */
+        }
+
+        .trust-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-xl);
+        }
+
+        .trust-item {
+            padding: var(--spacing-lg);
+        }
+
+        .trust-icon {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            display: block;
+        }
+
+        .trust-number {
+            display: block;
+            font-size: var(--font-size-3xl);
+            font-weight: 800;
+            color: var(--color-accent);
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .trust-label {
+            font-size: var(--font-size-sm);
+            opacity: 0.9; /* Slightly more opaque for better readability */
+        }
+
+        /* ================================================================
+           FAQ SECTION
+           ================================================================ */
+        .faq {
+            padding: var(--spacing-3xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: white;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            margin-bottom: var(--spacing-md);
+            overflow: hidden;
+            transition: all var(--transition-base);
+        }
+
+        .faq-item.active {
+            box-shadow: var(--shadow-md);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: var(--spacing-lg);
+            text-align: right;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color var(--transition-fast);
+        }
+
+        .faq-question:hover {
+            background-color: var(--color-surface);
+        }
+
+        .faq-icon {
+            font-size: var(--font-size-lg);
+            color: var(--color-text-muted);
+            transition: transform var(--transition-base);
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height var(--transition-base);
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+        }
+
+        .faq-answer-content {
+            padding: 0 var(--spacing-lg) var(--spacing-lg);
+            color: var(--color-text-light);
+            line-height: 1.8;
+        }
+
+        /* ================================================================
+           CTA SECTION
+           ================================================================ */
+        .cta {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
+            color: var(--color-primary-dark);
+            text-align: center;
+        }
+
+        .cta-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .cta h2 {
+            font-size: var(--font-size-4xl);
+            margin-bottom: var(--spacing-md);
+            font-weight: 800;
+        }
+
+        .cta p {
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--spacing-xl);
+            line-height: 1.8;
+            opacity: 0.9;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: var(--spacing-md);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-cta {
+            background: var(--color-primary-dark);
+            color: white;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        /* ================================================================
+           CONTACT SECTION
+           ================================================================ */
+        .contact {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(180deg, var(--color-surface) 0%, white 100%);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: var(--spacing-xl);
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .contact-item {
+            background: white;
+            padding: var(--spacing-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            border-right: 4px solid transparent;
+            text-align: center;
+        }
+
+        .contact-item:hover {
+            border-right-color: var(--color-accent);
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ================================================================
            FOOTER
            ================================================================ */
         .footer {
             background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
             color: white;
-            padding: var(--spacing-2xl) 0 var(--spacing-md);
+            padding: var(--spacing-2xl) 0;
+            margin-top: var(--spacing-3xl);
         }
 
         .footer-content {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: var(--spacing-xl);
-            margin-bottom: var(--spacing-xl);
         }
 
         .footer-section h5 {
             font-size: var(--font-size-lg);
             margin-bottom: var(--spacing-md);
-            color: var(--color-accent);
-            font-weight: 700;
+            position: relative;
+            padding-bottom: var(--spacing-sm);
         }
 
-        .footer-section p {
-            color: rgba(255, 255, 255, 0.8);
-            line-height: 1.8;
-            font-size: var(--font-size-sm);
+        .footer-section h5::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--color-accent);
+            border-radius: var(--radius-full);
         }
 
         .footer-section ul {
@@ -955,30 +1520,53 @@
         }
 
         .footer-section ul li {
-            margin-bottom: var(--spacing-xs);
+            margin-bottom: var(--spacing-sm);
         }
 
         .footer-section ul li a {
-            color: rgba(255, 255, 255, 0.8);
+            color: rgba(255, 255, 255, 0.7);
             text-decoration: none;
-            transition: color var(--transition-fast);
+            transition: all var(--transition-fast);
             font-size: var(--font-size-sm);
         }
 
         .footer-section ul li a:hover {
-            color: var(--color-accent);
+            color: white;
+            padding-right: 5px;
         }
 
         .footer-bottom {
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: var(--spacing-xl);
             padding-top: var(--spacing-md);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
             text-align: center;
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.7);
         }
 
-        .footer-bottom p {
-            color: rgba(255, 255, 255, 0.7);
+        /* Static footer tag */
+        .static-footer {
+            background: var(--color-primary-dark);
+            color: rgba(255, 255, 255, 0.6);
+            padding: var(--spacing-md) 0;
+            text-align: center;
             font-size: var(--font-size-sm);
-            margin-bottom: var(--spacing-xs);
+        }
+
+        .static-footer p {
+            margin: 0;
+        }
+
+        .static-footer a {
+            color: var(--color-accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all var(--transition-fast);
+        }
+
+        .static-footer a:hover {
+            color: white;
+            text-decoration: underline;
         }
 
         /* ================================================================
@@ -998,12 +1586,11 @@
             justify-content: center;
             font-size: var(--font-size-xl);
             cursor: pointer;
-            box-shadow: var(--shadow-xl);
+            box-shadow: var(--shadow-lg);
             opacity: 0;
             visibility: hidden;
             transition: all var(--transition-base);
-            z-index: 999;
-            border: none;
+            z-index: 1000;
         }
 
         .scroll-to-top.visible {
@@ -1012,850 +1599,171 @@
         }
 
         .scroll-to-top:hover {
-            transform: translateY(-5px);
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
         }
 
         /* ================================================================
            RESPONSIVE DESIGN
            ================================================================ */
-        @media (max-width: 968px) {
+        @media (max-width: 992px) {
             .hero .container {
                 grid-template-columns: 1fr;
+                text-align: center;
             }
-
-            .hero-image {
-                height: 300px;
+            
+            .hero-buttons {
+                justify-content: center;
             }
-
-            .contact-wrapper {
+            
+            .hero-stats {
+                justify-content: center;
+            }
+            
+            .leasing-content {
                 grid-template-columns: 1fr;
             }
-
-            .hero-title {
-                font-size: var(--font-size-4xl);
+            
+            .leasing-image {
+                display: none;
             }
-
-            .section-title {
-                font-size: var(--font-size-3xl);
+            
+            .section-title::after {
+                margin-left: auto;
+                margin-right: auto;
             }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                width: 250px;
-                height: calc(100vh - 60px);
-                background: white;
-                flex-direction: column;
-                padding: var(--spacing-lg);
-                box-shadow: var(--shadow-xl);
-                transition: right var(--transition-base);
-                align-items: flex-start;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
             .mobile-menu-btn {
                 display: block;
             }
-
-            .hero-buttons {
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 70px);
+                background: white;
                 flex-direction: column;
+                align-items: center;
+                padding: var(--spacing-xl);
+                transition: left var(--transition-base);
+                box-shadow: var(--shadow-lg);
+                z-index: 999;
             }
-
-            .hero-stats {
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .hero-title {
+                font-size: var(--font-size-4xl);
+            }
+            
+            .hero-subtitle {
+                font-size: var(--font-size-base);
+            }
+            
+            .section-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .section-subtitle {
+                font-size: var(--font-size-base);
+            }
+            
+            .leasing-benefits {
+                grid-template-columns: 1fr;
+            }
+            
+            .leasing-stats {
                 flex-direction: column;
                 gap: var(--spacing-md);
             }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid,
-            .dashboards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-table {
-                font-size: var(--font-size-sm);
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: var(--spacing-sm);
-            }
         }
 
-        @media (max-width: 480px) {
-            :root {
-                --font-size-5xl: 2rem;
-                --font-size-4xl: 1.75rem;
-                --font-size-3xl: 1.5rem;
-            }
-
+        @media (max-width: 576px) {
             .hero {
-                padding: calc(60px + var(--spacing-xl)) 0 var(--spacing-xl);
+                padding: calc(80px + var(--spacing-xl)) 0 var(--spacing-xl);
             }
-
+            
+            .hero-title {
+                font-size: var(--font-size-3xl);
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: var(--spacing-sm);
+            }
+            
             .btn {
                 width: 100%;
                 justify-content: center;
             }
-        }
-
-        /* ================================================================
-           LOADING ANIMATION
-           ================================================================ */
-        .page-loader {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: white;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 9999;
-            transition: opacity 0.5s ease-out;
-        }
-
-        .page-loader.hidden {
-            opacity: 0;
-            pointer-events: none;
-        }
-
-        .loader-spinner {
-            width: 50px;
-            height: 50px;
-            border: 4px solid var(--color-border);
-            border-top-color: var(--color-accent);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            to { transform: rotate(360deg); }
-        }
-
-        /* اضافه کردن استایل‌های جدید برای سکشن‌های اضافه شده */
-        
-        /* ================================================================
-           PROCESS SECTION
-           ================================================================ */
-        .process {
-            padding: var(--spacing-3xl) 0;
-            background: linear-gradient(180deg, white 0%, var(--color-surface) 100%);
-        }
-
-        .process-steps {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: var(--spacing-xl);
-            position: relative;
-        }
-
-        .process-step {
-            background: white;
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            text-align: center;
-            position: relative;
-            transition: all var(--transition-base);
-        }
-
-        .process-step:hover {
-            transform: translateY(-10px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-            color: var(--color-primary-dark);
-            border-radius: var(--radius-full);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: var(--font-size-2xl);
-            font-weight: 800;
-            margin: 0 auto var(--spacing-md);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .process-step h4 {
-            font-size: var(--font-size-xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 700;
-        }
-
-        .process-step p {
-            color: var(--color-text-light);
-            line-height: 1.8;
-        }
-
-        /* ================================================================
-           LOAN SERVICES SECTION
-           ================================================================ */
-        .loan-services {
-            padding: var(--spacing-3xl) 0;
-            background-color: var(--color-background);
-        }
-
-        .loan-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: var(--spacing-lg);
-        }
-
-        .loan-card {
-            background: linear-gradient(135deg, white, var(--color-surface));
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-md);
-            border: 2px solid transparent;
-            transition: all var(--transition-base);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .loan-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 100px;
-            height: 100px;
-            background: radial-gradient(circle, rgba(212, 175, 55, 0.1), transparent);
-            border-radius: 50%;
-            transform: translate(30%, -30%);
-        }
-
-        .loan-card:hover {
-            border-color: var(--color-accent);
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .loan-icon {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-            display: block;
-        }
-
-        .loan-card h4 {
-            font-size: var(--font-size-xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-sm);
-            font-weight: 700;
-        }
-
-        .loan-card p {
-            color: var(--color-text-light);
-            margin-bottom: var(--spacing-md);
-            line-height: 1.8;
-        }
-
-        .loan-features {
-            list-style: none;
-            margin-bottom: var(--spacing-md);
-        }
-
-        .loan-features li {
-            padding: var(--spacing-xs) 0;
-            color: var(--color-text-light);
-            font-size: var(--font-size-sm);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-xs);
-        }
-
-        .loan-features li::before {
-            content: '✓';
-            color: var(--color-success);
-            font-weight: bold;
-        }
-
-        /* ================================================================
-           REGISTRATION SERVICES SECTION
-           ================================================================ */
-        .registration {
-            padding: var(--spacing-3xl) 0;
-            background: linear-gradient(180deg, var(--color-surface) 0%, white 100%);
-        }
-
-        .registration-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .registration-card {
-            background: white;
-            padding: var(--spacing-xl);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            transition: all var(--transition-base);
-            border-top: 5px solid var(--color-accent);
-        }
-
-        .registration-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-xl);
-        }
-
-        .registration-icon {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-            display: inline-block;
-            padding: var(--spacing-md);
-            background: linear-gradient(135deg, var(--color-surface), #e9ecef);
-            border-radius: var(--radius-lg);
-        }
-
-        .registration-card h3 {
-            font-size: var(--font-size-2xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-md);
-            font-weight: 700;
-        }
-
-        .registration-list {
-            list-style: none;
-            margin-bottom: var(--spacing-lg);
-        }
-
-        .registration-list li {
-            padding: var(--spacing-sm) 0;
-            color: var(--color-text-light);
-            border-bottom: 1px solid var(--color-border);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-        }
-
-        .registration-list li:last-child {
-            border-bottom: none;
-        }
-
-        .registration-list li::before {
-            content: '📋';
-            font-size: var(--font-size-lg);
-        }
-
-        /* ================================================================
-           LEASING SECTION
-           ================================================================ */
-        .leasing {
-            padding: var(--spacing-3xl) 0;
-            background-color: var(--color-background);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leasing::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            right: 0;
-            width: 500px;
-            height: 500px;
-            background: radial-gradient(circle, rgba(26, 54, 93, 0.03), transparent);
-            border-radius: 50%;
-        }
-
-        .leasing-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: var(--spacing-2xl);
-            align-items: center;
-            position: relative;
-            z-index: 1;
-        }
-
-        .leasing-info h3 {
-            font-size: var(--font-size-3xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-md);
-            font-weight: 800;
-        }
-
-        .leasing-info p {
-            color: var(--color-text-light);
-            line-height: 1.8;
-            margin-bottom: var(--spacing-lg);
-            font-size: var(--font-size-lg);
-        }
-
-        .leasing-benefits {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-md);
-        }
-
-        .benefit-item {
-            background: white;
-            padding: var(--spacing-md);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-sm);
-            display: flex;
-            align-items: center;
-            gap: var(--spacing-sm);
-            transition: all var(--transition-base);
-        }
-
-        .benefit-item:hover {
-            box-shadow: var(--shadow-md);
-            transform: translateX(-5px);
-        }
-
-        .benefit-icon {
-            font-size: var(--font-size-2xl);
-        }
-
-        .benefit-text {
-            font-size: var(--font-size-sm);
-            color: var(--color-text);
-            font-weight: 600;
-        }
-
-        .leasing-image {
-            background: linear-gradient(135deg, var(--color-primary), var(--color-primary-light));
-            border-radius: var(--radius-xl);
-            padding: var(--spacing-2xl);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 400px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .leasing-image::before {
-            content: '🚗';
-            font-size: 200px;
-            opacity: 0.1;
-            position: absolute;
-        }
-
-        .leasing-stats {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: var(--spacing-lg);
-            position: relative;
-            z-index: 1;
-        }
-
-        .leasing-stat {
-            background: rgba(255, 255, 255, 0.95);
-            padding: var(--spacing-lg);
-            border-radius: var(--radius-lg);
-            text-align: center;
-        }
-
-        .leasing-stat strong {
-            display: block;
-            font-size: var(--font-size-3xl);
-            color: var(--color-accent);
-            font-weight: 800;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .leasing-stat span {
-            color: var(--color-text);
-            font-size: var(--font-size-sm);
-        }
-
-        /* ================================================================
-           TRUST SECTION
-           ================================================================ */
-        .trust {
-            padding: var(--spacing-3xl) 0;
-            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
-            color: white;
-        }
-
-        .trust .section-title {
-            color: white;
-        }
-
-        .trust .section-title::after {
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-        }
-
-        .trust .section-subtitle {
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        .trust-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: var(--spacing-xl);
-        }
-
-        .trust-item {
-            text-align: center;
-            padding: var(--spacing-lg);
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: var(--radius-lg);
-            backdrop-filter: blur(10px);
-            transition: all var(--transition-base);
-        }
-
-        .trust-item:hover {
-            background: rgba(255, 255, 255, 0.15);
-            transform: translateY(-5px);
-        }
-
-        .trust-icon {
-            font-size: var(--font-size-4xl);
-            margin-bottom: var(--spacing-md);
-            display: block;
-        }
-
-        .trust-number {
-            font-size: var(--font-size-3xl);
-            font-weight: 800;
-            color: var(--color-accent);
-            display: block;
-            margin-bottom: var(--spacing-xs);
-        }
-
-        .trust-label {
-            font-size: var(--font-size-base);
-            color: rgba(255, 255, 255, 0.9);
-        }
-
-        /* ================================================================
-           FAQ SECTION
-           ================================================================ */
-        .faq {
-            padding: var(--spacing-3xl) 0;
-            background-color: var(--color-background);
-        }
-
-        .faq-container {
-            max-width: 800px;
-            margin: 0 auto;
-        }
-
-        .faq-item {
-            background: white;
-            margin-bottom: var(--spacing-md);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-            transition: all var(--transition-base);
-        }
-
-        .faq-item:hover {
-            box-shadow: var(--shadow-lg);
-        }
-
-        .faq-question {
-            padding: var(--spacing-lg);
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            background: white;
-            transition: all var(--transition-fast);
-            border: none;
-            width: 100%;
-            text-align: right;
-            font-family: var(--font-primary);
-        }
-
-        .faq-question:hover {
-            background: var(--color-surface);
-        }
-
-        .faq-question h4 {
-            font-size: var(--font-size-lg);
-            color: var(--color-primary);
-            font-weight: 600;
-            margin: 0;
-        }
-
-        .faq-icon {
-            font-size: var(--font-size-xl);
-            color: var(--color-accent);
-            transition: transform var(--transition-base);
-        }
-
-        .faq-item.active .faq-icon {
-            transform: rotate(180deg);
-        }
-
-        .faq-answer {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height var(--transition-base);
-        }
-
-        .faq-answer-content {
-            padding: 0 var(--spacing-lg) var(--spacing-lg);
-            color: var(--color-text-light);
-            line-height: 1.8;
-        }
-
-        .faq-item.active .faq-answer {
-            max-height: 500px;
-        }
-
-        /* ================================================================
-           CTA SECTION
-           ================================================================ */
-        .cta {
-            padding: var(--spacing-3xl) 0;
-            background: linear-gradient(135deg, var(--color-accent), var(--color-accent-light));
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -20%;
-            width: 600px;
-            height: 600px;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
-            border-radius: 50%;
-        }
-
-        .cta-content {
-            position: relative;
-            z-index: 1;
-        }
-
-        .cta h2 {
-            font-size: var(--font-size-4xl);
-            color: var(--color-primary-dark);
-            margin-bottom: var(--spacing-md);
-            font-weight: 800;
-        }
-
-        .cta p {
-            font-size: var(--font-size-xl);
-            color: var(--color-primary);
-            margin-bottom: var(--spacing-xl);
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: var(--spacing-md);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn-cta {
-            background: var(--color-primary);
-            color: white;
-            padding: var(--spacing-md) var(--spacing-2xl);
-            font-size: var(--font-size-lg);
-        }
-
-        .btn-cta:hover {
-            background: var(--color-primary-dark);
-        }
-
-        /* ================================================================
-           RESPONSIVE UPDATES
-           ================================================================ */
-        @media (max-width: 968px) {
-            .hero .container {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-image {
-                height: 300px;
-            }
-
-            .contact-wrapper {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-title {
-                font-size: var(--font-size-4xl);
-            }
-
-            .section-title {
-                font-size: var(--font-size-3xl);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                top: 60px;
-                right: -100%;
-                width: 250px;
-                height: calc(100vh - 60px);
-                background: white;
-                flex-direction: column;
-                padding: var(--spacing-lg);
-                box-shadow: var(--shadow-xl);
-                transition: right var(--transition-base);
-                align-items: flex-start;
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .hero-buttons {
-                flex-direction: column;
-            }
-
+            
             .hero-stats {
                 flex-direction: column;
                 gap: var(--spacing-md);
             }
-
-            .services-grid,
-            .features-grid,
-            .testimonials-grid,
-            .dashboards-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .comparison-table {
-                font-size: var(--font-size-sm);
-            }
-
-            .comparison-table th,
-            .comparison-table td {
-                padding: var(--spacing-sm);
-            }
-
-            .leasing-content {
-                grid-template-columns: 1fr;
-            }
-
-            .leasing-benefits {
-                grid-template-columns: 1fr;
-            }
-
-            .leasing-image {
-                min-height: 300px;
-            }
-
-            .process-steps {
-                grid-template-columns: 1fr;
-            }
-
-            .loan-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .registration-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .trust-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .cta h2 {
-                font-size: var(--font-size-3xl);
-            }
-
+            
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
-            }
-
-            .cta-buttons .btn {
-                width: 100%;
-                max-width: 300px;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Page Loader -->
-    <div class="page-loader" id="pageLoader">
-        <div class="loader-spinner"></div>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button class="scroll-to-top" id="scrollToTop" aria-label="بازگشت به بالا">
-        ↑
-    </button>
-
     <!-- ================================================================
          NAVIGATION BAR
          ================================================================ -->
-    <nav class="navbar" id="navbar">
+    <nav class="navbar">
         <div class="container">
-            <div class="navbar-brand">
-                <h1 class="logo">
-                    <span class="logo-icon">⚖️</span>
-                    شهر راز
-                </h1>
-            </div>
-            <ul class="nav-links" id="navLinks">
+            <a href="#" class="navbar-brand">
+                <div class="logo">
+                    <span class="logo-icon">🏛️</span>
+                    <span>{{ settings.site_name }}</span>
+                </div>
+            </a>
+            <ul class="nav-links">
                 <li><a href="#services">خدمات</a></li>
-                <li><a href="#process">فرآیند</a></li>
-                <li><a href="#loan-services">وام</a></li>
+                <li><a href="#loan-services">وام‌ها</a></li>
                 <li><a href="#leasing">لیزینگ</a></li>
-                <li><a href="#registration">ثبت شرکت</a></li>
-                <li><a href="#trust">اعتماد</a></li>
-                <li><a href="#faq">سوالات متداول</a></li>
+                <li><a href="#registration">ثبت</a></li>
+                <li><a href="#process">فرآیند</a></li>
+                <li><a href="#faq">سوالات</a></li>
                 <li><a href="#contact">تماس</a></li>
             </ul>
-            <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="منوی موبایل">
-                ☰
-            </button>
+            <button class="mobile-menu-btn">☰</button>
         </div>
     </nav>
 
     <!-- ================================================================
          HERO SECTION
          ================================================================ -->
+    {% if hero %}
     <section class="hero">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge">✨ مرکز تخصصی خدمات مالی و حقوقی</div>
-                <!-- بهبود عنوان و توضیحات hero -->
-                <h1 class="hero-title">راه‌حل جامع برای تمام نیازهای مالی و حقوقی شما</h1>
-                <p class="hero-subtitle">شهر راز با بیش از ۱۵ سال تجربه، ارائه‌دهنده خدمات تخصصی خرید و فروش وام، لیزینگ خودرو، ثبت شرکت، خدمات حقوقی و قضایی، ثبت مجوزها و کارت‌های بازرگانی است. ما با تیم متخصص و سیستم‌های پیشرفته، بهترین راه‌حل را برای شما فراهم می‌کنیم.</p>
+                <h1 class="hero-title">{{ hero.headline }}</h1>
+                <p class="hero-subtitle">{{ hero.subheadline }}</p>
                 <div class="hero-buttons">
-                    <a href="#services" class="btn btn-primary btn-lg">
-                        <span>🎯</span> مشاهده خدمات
+                    <a href="{{ hero.cta_primary_link }}" class="btn btn-primary btn-lg">
+                        <span>📞</span> {{ hero.cta_primary_text }}
                     </a>
-                    <a href="#contact" class="btn btn-secondary btn-lg">
-                        <span>📞</span> مشاوره رایگان
+                    <a href="{{ hero.cta_secondary_link }}" class="btn btn-secondary btn-lg">
+                        <span>📋</span> {{ hero.cta_secondary_text }}
                     </a>
                 </div>
                 <div class="hero-stats">
+                    {% for stat in stats %}
                     <div class="hero-stat">
-                        <strong>2000+</strong>
-                        <span>مشتری راضی</span>
+                        <strong>{{ stat.value }}</strong>
+                        <span>{{ stat.title }}</span>
                     </div>
-                    <div class="hero-stat">
-                        <strong>50+</strong>
-                        <span>متخصص حرفه‌ای</span>
-                    </div>
-                    <div class="hero-stat">
-                        <strong>15+</strong>
-                        <span>سال تجربه</span>
-                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="hero-image">
@@ -1864,6 +1772,7 @@
             </div>
         </div>
     </section>
+    {% endif %}
 
     <!-- ================================================================
          SERVICES SECTION
@@ -1872,130 +1781,18 @@
         <div class="container">
             <h2 class="section-title fade-in">خدمات تخصصی ما</h2>
             <p class="section-subtitle fade-in">مجموعه کامل خدمات مالی و حقوقی در یک مکان</p>
-            <!-- بازنویسی کامل سرویس‌ها بر اساس کسب‌وکار واقعی -->
             <div class="services-grid">
+                {% for service in services %}
                 <div class="service-card fade-in">
-                    <div class="service-icon">💰</div>
-                    <h3>خرید و فروش وام</h3>
-                    <p>خرید و فروش انواع وام‌های بانکی با بهترین نرخ و شرایط. ما واسطه معتبر بین خریداران و فروشندگان وام هستیم.</p>
+                    <div class="service-icon">{{ service.icon }}</div>
+                    <h3>{{ service.title }}</h3>
+                    <p>{{ service.short_description }}</p>
                 </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🚗</div>
-                    <h3>لیزینگ خودرو</h3>
-                    <p>ارائه خدمات لیزینگ خودرو با شرایط ویژه و اقساط مناسب. خرید خودرو بدون دغدغه مالی با لیزینگ شهر راز.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">🏢</div>
-                    <h3>ثبت شرکت</h3>
-                    <p>ثبت انواع شرکت‌ها شامل سهامی خاص، با مسئولیت محدود، تعاونی و... با سرعت و دقت بالا.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">⚖️</div>
-                    <h3>خدمات حقوقی و قضایی</h3>
-                    <p>ارائه مشاوره حقوقی، وکالت در دادگاه‌ها، تنظیم قراردادها و پیگیری امور قضایی توسط وکلای مجرب.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">📜</div>
-                    <h3>ثبت مجوزها</h3>
-                    <p>اخذ و ثبت انواع مجوزهای کسب‌وکار، پروانه‌های صنفی، مجوزهای بهداشتی و صنعتی.</p>
-                </div>
-                <div class="service-card fade-in">
-                    <div class="service-icon">💼</div>
-                    <h3>کارت بازرگانی</h3>
-                    <p>اخذ و تمدید کارت بازرگانی، ثبت کدهای اقتصادی و انجام امور مربوط به واردات و صادرات.</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- اضافه کردن سکشن فرآیند کار -->
-    <!-- ================================================================
-         PROCESS SECTION
-         ================================================================ -->
-    <section class="process" id="process">
-        <div class="container">
-            <h2 class="section-title fade-in">{{ site_settings.services_title }}</h2>
-            <p class="section-subtitle fade-in">{{ site_settings.services_subtitle }}</p>
-            <div class="process-steps">
-                <div class="process-step">
-                    <h3 class="process-step-title">1. {{ site_settings.services_step_1_title }}</h3>
-                    <p class="process-step-description">{{ site_settings.services_step_1_description }}</p>
-                </div>
-                <div class="process-step">
-                    <h3 class="process-step-title">2. {{ site_settings.services_step_2_title }}</h3>
-                    <p class="process-step-description">{{ site_settings.services_step_2_description }}</p>
-                </div>
-                <div class="process-step">
-                    <h3 class="process-step-title">3. {{ site_settings.services_step_3_title }}</h3>
-                    <p class="process-step-description">{{ site_settings.services_step_3_description }}</p>
-                </div>
-            </div>
-    <h2 class="section-title fade-in">{{ site_settings.features_title }}</h2>
-    <p class="section-subtitle fade-in">{{ site_settings.features_subtitle }}</p>
-    <div class="feature-grid">
-        <div class="feature-item">
-            <h3 class="feature-title">{{ site_settings.feature_1_title }}</h3>
-            <p class="feature-description">{{ site_settings.feature_1_description }}</p>
-        </div>
-        <div class="feature-item">
-            <h3 class="feature-title">{{ site_settings.feature_2_title }}</h3>
-            <p class="feature-description">{{ site_settings.feature_2_description }}</p>
-        </div>
-        <div class="feature-item">
-            <h3 class="feature-title">{{ site_settings.feature_3_title }}</h3>
-            <p class="feature-description">{{ site_settings.feature_3_description }}</p>
-        </div>
-    </div>
-    <h2 class="section-title fade-in">{{ site_settings.trust_title }}</h2>
-    <p class="section-subtitle fade-in">{{ site_settings.trust_subtitle }}</p>
-    <div class="review-grid">
-        <div class="review-item">
-            <h3 class="review-title">{{ site_settings.review_1_title }}</h3>
-            <p class="review-description">{{ site_settings.review_1_description }}</p>
-            <p class="review-author">{{ site_settings.review_1_author }}</p>
-        </div>
-        <div class="review-item">
-            <h3 class="review-title">{{ site_settings.review_2_title }}</h3>
-            <p class="review-description">{{ site_settings.review_2_description }}</p>
-            <p class="review-author">{{ site_settings.review_2_author }}</p>
-        </div>
-        <div class="review-item">
-            <h3 class="review-title">{{ site_settings.review_3_title }}</h3>
-            <p class="review-description">{{ site_settings.review_3_description }}</p>
-            <p class="review-author">{{ site_settings.review_3_author }}</p>
-        </div>
-    </div>
-    <h2 class="section-title fade-in">{{ site_settings.faq_title }}</h2>
-    <p class="section-subtitle fade-in">{{ site_settings.faq_subtitle }}</p>
-</original_code>```
-
-```
-
-                <div class="process-step scale-in">
-                    <div class="step-number">1</div>
-                    <h4>تماس و مشاوره</h4>
-                    <p>با ما تماس بگیرید و نیاز خود را بیان کنید. مشاوران ما به صورت رایگان راهنمایی‌های لازم را ارائه می‌دهند.</p>
-                </div>
-                <div class="process-step scale-in">
-                    <div class="step-number">2</div>
-                    <h4>بررسی و ارزیابی</h4>
-                    <p>تیم متخصص ما درخواست شما را بررسی کرده و بهترین راه‌حل را با توجه به شرایط شما پیشنهاد می‌دهند.</p>
-                </div>
-                <div class="process-step scale-in">
-                    <div class="step-number">3</div>
-                    <h4>اجرا و پیگیری</h4>
-                    <p>پس از تایید، فرآیند اجرا آغاز می‌شود و تیم ما تمام مراحل را با دقت پیگیری می‌کنند.</p>
-                </div>
-                <div class="process-step scale-in">
-                    <div class="step-number">4</div>
-                    <h4>تحویل و پشتیبانی</h4>
-                    <p>پس از اتمام کار، مدارک و خدمات به شما تحویل داده شده و پشتیبانی پس از فروش ارائه می‌شود.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- اضافه کردن سکشن خدمات وام -->
     <!-- ================================================================
          LOAN SERVICES SECTION
          ================================================================ -->
@@ -2004,133 +1801,59 @@
             <h2 class="section-title fade-in">انواع وام‌های قابل معامله</h2>
             <p class="section-subtitle fade-in">خرید و فروش انواع وام با بهترین قیمت و شرایط</p>
             <div class="loan-grid">
+                {% for category in loan_categories %}
                 <div class="loan-card fade-in">
-                    <div class="loan-icon">🏠</div>
-                    <h4>وام مسکن</h4>
-                    <p>خرید و فروش وام مسکن با شرایط ویژه</p>
+                    <div class="loan-icon">{{ category.icon }}</div>
+                    <h4>{{ category.title }}</h4>
+                    <p>{{ category.description }}</p>
                     <ul class="loan-features">
-                        <li>وام خرید مسکن</li>
-                        <li>وام ودیعه مسکن</li>
-                        <li>وام بازسازی</li>
-                        <li>وام تعمیرات</li>
+                        {% for item in category.loanitem_set.all %}
+                        {% if item.is_active %}
+                        <li>{{ item.title }}</li>
+                        {% endif %}
+                        {% endfor %}
                     </ul>
                 </div>
-                <div class="loan-card fade-in">
-                    <div class="loan-icon">🚗</div>
-                    <h4>وام خودرو</h4>
-                    <p>معامله وام خرید خودرو با نرخ رقابتی</p>
-                    <ul class="loan-features">
-                        <li>وام خرید خودرو</li>
-                        <li>وام نوسازی خودرو</li>
-                        <li>تسهیلات خودرویی</li>
-                        <li>لیزینگ خودرو</li>
-                    </ul>
-                </div>
-                <div class="loan-card fade-in">
-                    <div class="loan-icon">💼</div>
-                    <h4>وام کسب‌وکار</h4>
-                    <p>تامین مالی برای کسب‌وکارها</p>
-                    <ul class="loan-features">
-                        <li>وام سرمایه در گردش</li>
-                        <li>وام خرید ماشین‌آلات</li>
-                        <li>تسهیلات تولیدی</li>
-                        <li>وام توسعه کسب‌وکار</li>
-                    </ul>
-                </div>
-                <div class="loan-card fade-in">
-                    <div class="loan-icon">👥</div>
-                    <h4>وام ضروری</h4>
-                    <p>وام‌های ضروری با شرایط آسان</p>
-                    <ul class="loan-features">
-                        <li>وام ازدواج</li>
-                        <li>وام فرزندآوری</li>
-                        <li>وام تحصیلی</li>
-                        <li>وام درمان</li>
-                    </ul>
-                </div>
-                <div class="loan-card fade-in">
-                    <div class="loan-icon">🏦</div>
-                    <h4>وام بانکی</h4>
-                    <p>انواع وام‌های بانکی قابل معامله</p>
-                    <ul class="loan-features">
-                        <li>وام قرض‌الحسنه</li>
-                        <li>وام بانک مسکن</li>
-                        <li>وام بانک‌های خصوصی</li>
-                        <li>تسهیلات بانکی</li>
-                    </ul>
-                </div>
-                <div class="loan-card fade-in">
-                    <div class="loan-icon">📊</div>
-                    <h4>وام سرمایه‌گذاری</h4>
-                    <p>تسهیلات برای سرمایه‌گذاری</p>
-                    <ul class="loan-features">
-                        <li>وام سرمایه‌گذاری</li>
-                        <li>تسهیلات پروژه‌ای</li>
-                        <li>وام مشارکتی</li>
-                        <li>تامین مالی پروژه</li>
-                    </ul>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- اضافه کردن سکشن لیزینگ -->
     <!-- ================================================================
          LEASING SECTION
          ================================================================ -->
+    {% if leasing %}
     <section class="leasing" id="leasing">
         <div class="container">
             <div class="leasing-content">
                 <div class="leasing-info slide-in-right">
-                    <h3>لیزینگ خودرو با شرایط استثنایی</h3>
-                    <p>خرید خودرو دیگر دغدغه شما نیست! با لیزینگ شهر راز، خودروی مورد نظر خود را با اقساط بلندمدت و بدون نیاز به وثیقه سنگین تهیه کنید.</p>
+                    <h3>{{ leasing.title }}</h3>
+                    <p>{{ leasing.description }}</p>
                     <div class="leasing-benefits">
+                        {% for feature in leasing.features.splitlines %}
                         <div class="benefit-item">
                             <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">بدون پیش‌پرداخت</div>
+                            <div class="benefit-text">{{ feature }}</div>
                         </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">اقساط بلندمدت</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">بدون ضامن</div>
-                        </div>
-                        <div class="benefit-item">
-                            <div class="benefit-icon">✓</div>
-                            <div class="benefit-text">تحویل سریع</div>
-                        </div>
+                        {% endfor %}
                     </div>
-                    <a href="#contact" class="btn btn-primary btn-lg" style="margin-top: var(--spacing-lg);">
-                        <span>🚗</span> درخواست لیزینگ
-                    </a>
+                    <div class="leasing-stats">
+                        {% for stat in leasing.get_stats_list %}
+                        <div class="leasing-stat">
+                            <strong>{{ stat.value }}</strong>
+                            <span>{{ stat.label }}</span>
+                        </div>
+                        {% endfor %}
+                    </div>
                 </div>
                 <div class="leasing-image slide-in-left">
-                    <div class="leasing-stats">
-                        <div class="leasing-stat">
-                            <strong>500+</strong>
-                            <span>خودرو تحویل شده</span>
-                        </div>
-                        <div class="leasing-stat">
-                            <strong>98%</strong>
-                            <span>رضایت مشتریان</span>
-                        </div>
-                        <div class="leasing-stat">
-                            <strong>24</strong>
-                            <span>ماه اقساط</span>
-                        </div>
-                        <div class="leasing-stat">
-                            <strong>0%</strong>
-                            <span>پیش‌پرداخت</span>
-                        </div>
-                    </div>
+                    <!-- Image placeholder - in a real implementation, you would add an actual image -->
                 </div>
             </div>
         </div>
     </section>
+    {% endif %}
 
-    <!-- اضافه کردن سکشن ثبت شرکت و مجوزها -->
     <!-- ================================================================
          REGISTRATION SERVICES SECTION
          ================================================================ -->
@@ -2139,51 +1862,39 @@
             <h2 class="section-title fade-in">خدمات ثبتی و مجوزها</h2>
             <p class="section-subtitle fade-in">ثبت شرکت، اخذ مجوزها و کارت بازرگانی با سرعت و دقت</p>
             <div class="registration-grid">
+                {% for category in registration_categories %}
                 <div class="registration-card scale-in">
-                    <div class="registration-icon">🏢</div>
-                    <h3>ثبت انواع شرکت</h3>
+                    <div class="registration-icon">{{ category.icon }}</div>
+                    <h3>{{ category.name }}</h3>
                     <ul class="registration-list">
-                        <li>ثبت شرکت سهامی خاص</li>
-                        <li>ثبت شرکت با مسئولیت محدود</li>
-                        <li>ثبت شرکت تعاونی</li>
-                        <li>ثبت شرکت تضامنی</li>
-                        <li>تغییرات شرکت</li>
-                        <li>انحلال و ادغام شرکت</li>
+                        {% for item in category.serviceitem_set.all %}
+                        <li>{{ item.title }}</li>
+                        {% endfor %}
                     </ul>
                     <a href="#contact" class="btn btn-primary btn-block">
-                        <span>📝</span> ثبت شرکت
+                        <span>📝</span> درخواست خدمات
                     </a>
                 </div>
-                <div class="registration-card scale-in">
-                    <div class="registration-icon">📜</div>
-                    <h3>اخذ مجوزها</h3>
-                    <ul class="registration-list">
-                        <li>مجوز کسب‌وکار</li>
-                        <li>پروانه صنفی</li>
-                        <li>مجوز بهداشتی</li>
-                        <li>مجوز صنعتی</li>
-                        <li>مجوز ساختمانی</li>
-                        <li>مجوزهای تخصصی</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-success btn-block">
-                        <span>✅</span>اخذ مجوز
-                    </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         PROCESS SECTION
+         ================================================================ -->
+    <section class="process" id="process">
+        <div class="container">
+            <h2 class="section-title fade-in">فرآیند همکاری با ما</h2>
+            <p class="section-subtitle fade-in">چهار گام ساده تا رسیدن به هدف شما</p>
+            <div class="process-steps">
+                {% for i in "1234" %}
+                <div class="process-step scale-in">
+                    <div class="step-number">{{ i }}</div>
+                    <h4>مرحله {{ i }}</h4>
+                    <p>توضیحات مربوط به مرحله {{ i }}</p>
                 </div>
-                <div class="registration-card scale-in">
-                    <div class="registration-icon">💼</div>
-                    <h3>کارت بازرگانی</h3>
-                    <ul class="registration-list">
-                        <li>اخذ کارت بازرگانی</li>
-                        <li>تمدید کارت بازرگانی</li>
-                        <li>ثبت کد اقتصادی</li>
-                        <li>ثبت کد IEC</li>
-                        <li>مجوز واردات و صادرات</li>
-                        <li>ثبت برند و علامت تجاری</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-info btn-block">
-                        <span>🌐</span> کارت بازرگانی
-                    </a>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -2196,46 +1907,13 @@
             <h2 class="section-title fade-in">چرا شهر راز؟</h2>
             <p class="section-subtitle fade-in">دلایلی که ما را متمایز می‌کند</p>
             <div class="features-grid">
-                <div class="feature-item scale-in" data-feature="experience">
-                    <div class="feature-icon">⭐</div>
-                    <h4>تجربه بیش از ۱۵ سال</h4>
-                    <p>تیم با تجربه و کارشناسی در حل مسائل حقوقی متنوع و پیچیده</p>
+                {% for feature in features %}
+                <div class="feature-item scale-in">
+                    <div class="feature-icon">{{ feature.icon }}</div>
+                    <h4>{{ feature.title }}</h4>
+                    <p>{{ feature.description }}</p>
                 </div>
-                <div class="feature-item scale-in" data-feature="pricing">
-                    <div class="feature-icon">💰</div>
-                    <h4>نرخ‌های رقابتی</h4>
-                    <p>خدمات با کیفیت بالا و مناسب‌ترین قیمت برای تمام طبقات</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="speed">
-                    <div class="feature-icon">⚡</div>
-                    <h4>پاسخ سریع</h4>
-                    <p>پاسخگویی فوری به تمام درخواست‌ها و سؤال‌های کلاینت‌ها</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="security">
-                    <div class="feature-icon">🔐</div>
-                    <h4>محرمانگی و امنیت</h4>
-                    <p>محفوظ بودن کامل اطلاعات و فایل‌های قضایی شما</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="support">
-                    <div class="feature-icon">🕐</div>
-                    <h4>پشتیبانی ۲۴/۷</h4>
-                    <p>دسترسی دائمی به تیم حقوقی ما در تمام ساعات</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="digital">
-                    <div class="feature-icon">💻</div>
-                    <h4>سیستم دیجیتال</h4>
-                    <p>سیستمی پیشرفته برای مدیریت پرونده‌ها و مستندات</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="analysis">
-                    <div class="feature-icon">📊</div>
-                    <h4>تجزیه و تحلیل عمیق</h4>
-                    <p>بررسی دقیق و تحلیل جامع هر پرونده قبل از شروع دفاع</p>
-                </div>
-                <div class="feature-item scale-in" data-feature="results">
-                    <div class="feature-icon">🎯</div>
-                    <h4>نتایج اثربخش</h4>
-                    <p>تمرکز بر دستیابی به بهترین نتایج برای هر پرونده</p>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
@@ -2257,46 +1935,13 @@
                         </tr>
                     </thead>
                     <tbody>
+                        {% for item in comparison %}
                         <tr>
-                            <td>تجربه</td>
-                            <td class="positive">۱۵+ سال</td>
-                            <td class="neutral">متغیر</td>
+                            <td>{{ item.criterion }}</td>
+                            <td class="positive">{{ item.our_value }}</td>
+                            <td class="neutral">{{ item.others_value }}</td>
                         </tr>
-                        <tr>
-                            <td>تیم متخصص</td>
-                            <td class="positive">۵۰+ کارشناس</td>
-                            <td class="neutral">۲-۵ نفر</td>
-                        </tr>
-                        <tr>
-                            <td>پاسخ سریع</td>
-                            <td class="positive">۲۴ ساعت</td>
-                            <td class="neutral">۳-۷ روز</td>
-                        </tr>
-                        <tr>
-                            <td>سیستم دیجیتال</td>
-                            <td class="positive">پیشرفته</td>
-                            <td class="neutral">محدود</td>
-                        </tr>
-                        <tr>
-                            <td>نرخ پذیرایی</td>
-                            <td class="positive">شفاف و عادلانه</td>
-                            <td class="neutral">نامشخص</td>
-                        </tr>
-                        <tr>
-                            <td>نتایج موفق</td>
-                            <td class="positive">۹۵%</td>
-                            <td class="neutral">۷۰%</td>
-                        </tr>
-                        <tr>
-                            <td>پشتیبانی ۲۴/۷</td>
-                            <td class="positive">✓ بلی</td>
-                            <td class="neutral">✗ خیر</td>
-                        </tr>
-                        <tr>
-                            <td>مشاوره رایگان</td>
-                            <td class="positive">✓ بلی</td>
-                            <td class="neutral">✗ خیر</td>
-                        </tr>
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
@@ -2309,42 +1954,56 @@
     <section id="testimonials" class="testimonials">
         <div class="container">
             <h2 class="section-title fade-in">نظرات مشتریان</h2>
-            <p class="section-subtitle fade-in">تجربیات واقعی کلاینت‌های رضایت‌مند</p>
+            <p class="section-subtitle fade-in">تجربه همکاری با ما</p>
             <div class="testimonials-grid">
-                <div class="testimonial-card slide-in-right" data-rating="5">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>تیم شهر راز واقعاً حرفه‌ای و باتجربه است. پرونده‌ی ما را در کمترین وقت و بهترین نتیجه حل کردند. توصیه می‌کنم!</p>
+                {% for testimonial in testimonials %}
+                <div class="testimonial-card slide-in-right">
+                    <div class="stars">
+                        {% for i in "12345" %}
+                        {% if forloop.counter <= testimonial.rating %}⭐{% else %}☆{% endif %}
+                        {% endfor %}
+                    </div>
+                    <p>{{ testimonial.comment }}</p>
                     <div class="testimonial-author">
-                        <strong>علی محمدی</strong>
-                        <span>مدیرعامل شرکت</span>
+                        <strong>{{ testimonial.client_name }}</strong>
+                        <span>{{ testimonial.client_role }}</span>
                     </div>
                 </div>
-                <div class="testimonial-card slide-in-right" data-rating="5">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>خدمات بسیار حرفه‌ای و کاملاً شفاف. هیچ هزینه پنهانی نداشت و نتیجه عالی بود. ممنونم!</p>
-                    <div class="testimonial-author">
-                        <strong>فاطمه احمدی</strong>
-                        <span>مالک کسب‌و‌کار</span>
+                {% endfor %}
+            </div>
+            
+            <!-- Testimonial submission form -->
+            <div class="testimonial-form-section">
+                <h3 class="form-title">نظر خود را با ما به اشتراک بگذارید</h3>
+                <form id="testimonial-form" class="testimonial-form">
+                    <div class="form-group">
+                        <label for="client_name">نام شما:</label>
+                        <input type="text" id="client_name" name="client_name" required>
                     </div>
-                </div>
-                <div class="testimonial-card slide-in-right" data-rating="5">
-                    <div class="stars">⭐⭐⭐⭐⭐</div>
-                    <p>سرعت پاسخگویی و مشاوره عالی. پیشنهادات قیمت رقابتی و نتایج بهتر از انتظار. بسیار رضایت‌مند!</p>
-                    <div class="testimonial-author">
-                        <strong>حسن رضایی</strong>
-                        <span>بازرگان</span>
+                    <div class="form-group">
+                        <label for="client_role">نقش شما:</label>
+                        <input type="text" id="client_role" name="client_role" required>
                     </div>
-                </div>
+                    <div class="form-group">
+                        <label for="rating">امتیاز:</label>
+                        <select id="rating" name="rating" required>
+                            <option value="5">⭐⭐⭐⭐⭐ (عالی)</option>
+                            <option value="4">⭐⭐⭐⭐ (خوب)</option>
+                            <option value="3">⭐⭐⭐ (متوسط)</option>
+                            <option value="2">⭐⭐ (ضعیف)</option>
+                            <option value="1">⭐ (بد)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="comment">نظر شما:</label>
+                        <textarea id="comment" name="comment" rows="5" required></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">ارسال نظر</button>
+                </form>
             </div>
         </div>
     </section>
 
-    <!-- ================================================================
-         DASHBOARDS SECTION
-         ================================================================ -->
-    <!-- The dashboards section has been completely removed as per the updates. -->
-
-    <!-- اضافه کردن سکشن اعتماد و اعتبار -->
     <!-- ================================================================
          TRUST SECTION
          ================================================================ -->
@@ -2353,41 +2012,17 @@
             <h2 class="section-title fade-in">چرا به ما اعتماد کنید؟</h2>
             <p class="section-subtitle fade-in">آمار و ارقام گویای کیفیت خدمات ما</p>
             <div class="trust-grid">
+                {% for stat in stats %}
                 <div class="trust-item scale-in">
-                    <div class="trust-icon">👥</div>
-                    <span class="trust-number">2000+</span>
-                    <span class="trust-label">مشتری راضی</span>
+                    <div class="trust-icon">{{ stat.icon }}</div>
+                    <span class="trust-number">{{ stat.value }}</span>
+                    <span class="trust-label">{{ stat.title }}</span>
                 </div>
-                <div class="trust-item scale-in">
-                    <div class="trust-icon">⭐</div>
-                    <span class="trust-number">98%</span>
-                    <span class="trust-label">رضایت مشتریان</span>
-                </div>
-                <div class="trust-item scale-in">
-                    <div class="trust-icon">🏆</div>
-                    <span class="trust-number">15+</span>
-                    <span class="trust-label">سال تجربه</span>
-                </div>
-                <div class="trust-item scale-in">
-                    <div class="trust-icon">💼</div>
-                    <span class="trust-number">50+</span>
-                    <span class="trust-label">متخصص حرفه‌ای</span>
-                </div>
-                <div class="trust-item scale-in">
-                    <div class="trust-icon">📊</div>
-                    <span class="trust-number">5000+</span>
-                    <span class="trust-label">پروژه موفق</span>
-                </div>
-                <div class="trust-item scale-in">
-                    <div class="trust-icon">⚡</div>
-                    <span class="trust-number">24/7</span>
-                    <span class="trust-label">پشتیبانی</span>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- اضافه کردن سکشن سوالات متداول -->
     <!-- ================================================================
          FAQ SECTION
          ================================================================ -->
@@ -2396,77 +2031,23 @@
             <h2 class="section-title fade-in">سوالات متداول</h2>
             <p class="section-subtitle fade-in">پاسخ به سوالات رایج شما</p>
             <div class="faq-container">
+                {% for item in faq %}
                 <div class="faq-item fade-in">
                     <button class="faq-question">
-                        <h4>چگونه می‌توانم وام خود را بفروشم؟</h4>
+                        <h4>{{ item.question }}</h4>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-answer">
                         <div class="faq-answer-content">
-                            برای فروش وام، کافی است با ما تماس بگیرید و مشخصات وام خود را اعلام کنید. کارشناسان ما پس از بررسی، بهترین قیمت را به شما پیشنهاد می‌دهند و در صورت توافق، فرآیند انتقال وام آغاز می‌شود.
+                            {{ item.answer }}
                         </div>
                     </div>
                 </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <h4>مدت زمان ثبت شرکت چقدر است؟</h4>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            مدت زمان ثبت شرکت بسته به نوع شرکت و کامل بودن مدارک، معمولاً بین 3 تا 7 روز کاری است. تیم ما تمام تلاش خود را می‌کند تا این فرآیند در کوتاه‌ترین زمان ممکن انجام شود.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <h4>آیا لیزینگ خودرو نیاز به ضامن دارد؟</h4>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            خیر، یکی از مزایای لیزینگ خودرو در شهر راز این است که نیازی به ضامن ندارد. شما می‌توانید با ارائه مدارک شناسایی و اثبات درآمد، از این خدمات استفاده کنید.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <h4>هزینه خدمات حقوقی چگونه محاسبه می‌شود؟</h4>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            هزینه خدمات حقوقی بسته به نوع پرونده، پیچیدگی موضوع و زمان مورد نیاز متفاوت است. ما پس از بررسی اولیه پرونده، هزینه‌ها را به صورت شفاف و دقیق به شما اعلام می‌کنیم.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <h4>آیا مشاوره اولیه رایگان است؟</h4>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            بله، مشاوره اولیه در تمام بخش‌های خدمات ما کاملاً رایگان است. شما می‌توانید با تماس با ما، از مشاوران متخصص ما راهنمایی‌های لازم را دریافت کنید.
-                        </div>
-                    </div>
-                </div>
-                <div class="faq-item fade-in">
-                    <button class="faq-question">
-                        <h4>چگونه می‌توانم کارت بازرگانی دریافت کنم؟</h4>
-                        <span class="faq-icon">▼</span>
-                    </button>
-                    <div class="faq-answer">
-                        <div class="faq-answer-content">
-                            برای دریافت کارت بازرگانی، ابتدا باید شرکت خود را ثبت کنید. سپس با ارائه مدارک مورد نیاز به اتاق بازرگانی، می‌توانید کارت بازرگانی دریافت کنید. تیم ما تمام این مراحل را برای شما انجام می‌دهد.
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
         </div>
     </section>
 
-    <!-- اضافه کردن سکشن CTA -->
     <!-- ================================================================
          CTA SECTION
          ================================================================ -->
@@ -2490,40 +2071,51 @@
     <!-- ================================================================
          CONTACT SECTION
          ================================================================ -->
+    {% if contact %}
     <section id="contact" class="contact">
         <div class="container">
             <h2 class="section-title fade-in">تماس با ما</h2>
             <p class="section-subtitle fade-in">برای مشاوره رایگان با ما در تماس باشید</p>
             
-            <!-- Removed contact form, only showing contact information -->
             <div class="contact-info">
                 <div class="contact-item slide-in-right">
                     <div class="contact-icon">📞</div>
                     <h4>تلفن تماس</h4>
-                    <p dir="ltr">021-1234-5678</p>
-                    <p dir="ltr">0912-345-6789</p>
+                    <p>{{ contact.phone|linebreaksbr }}</p>
                 </div>
                 <div class="contact-item slide-in-right">
-                    <div class="contact-icon">📧</div>
+                    <div class="contact-icon">✉️</div>
                     <h4>ایمیل</h4>
-                    <p>info@shahrar.ir</p>
-                    <p>support@shahrar.ir</p>
-                </div>
-                <div class="contact-item slide-in-right">
-                    <div class="contact-icon">📍</div>
-                    <h4>آدرس دفتر</h4>
-                    <p>تهران، خیابان آزادی، پلاک ۱۲۳</p>
-                    <p>طبقه ۵، واحد ۱۰</p>
+                    <p>{{ contact.email|linebreaksbr }}</p>
                 </div>
                 <div class="contact-item slide-in-right">
                     <div class="contact-icon">🕐</div>
                     <h4>ساعات کاری</h4>
-                    <p>شنبه تا چهارشنبه: ۹ صبح تا ۶ عصر</p>
-                    <p>پنجشنبه: ۹ صبح تا ۱ ظهر</p>
+                    <p>{{ settings.work_hours|linebreaksbr }}</p>
+                </div>
+            </div>
+            
+            <!-- Office addresses section -->
+            <div class="office-addresses">
+                <h3 class="office-addresses-title">آدرس دفاتر ما</h3>
+                <div class="addresses-grid">
+                    <div class="address-card slide-in-right">
+                        <div class="address-icon">🏢</div>
+                        <h4>دفتر مرکزی</h4>
+                        <p>{{ settings.head_office_address|linebreaksbr }}</p>
+                    </div>
+                    {% if settings.branch_office_address %}
+                    <div class="address-card slide-in-right">
+                        <div class="address-icon">🏢</div>
+                        <h4>شعبه</h4>
+                        <p>{{ settings.branch_office_address|linebreaksbr }}</p>
+                    </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
     </section>
+    {% endif %}
 
     <!-- ================================================================
          FOOTER
@@ -2532,18 +2124,18 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h5>شهر راز</h5>
-                    <p>شرکت خدمات حقوقی تخصصی با بیش از ۱۵ سال تجربه در ارائه بهترین خدمات حقوقی</p>
+                    <h5>{{ settings.site_name }}</h5>
+                    <p>{{ settings.footer_text }}</p>
                 </div>
                 <div class="footer-section">
                     <h5>خدمات</h5>
                     <ul>
                         <li><a href="#services">خرید و فروش وام</a></li>
-                        <li><a href="#leasing">لیزینگ خودرو</a></li>
-                        <li><a href="#registration">ثبت شرکت</a></li>
+                        <li><a href="#services">لیزینگ خودرو</a></li>
+                        <li><a href="#services">ثبت شرکت</a></li>
                         <li><a href="#services">خدمات حقوقی</a></li>
-                        <li><a href="#registration">ثبت مجوزها</a></li>
-                        <li><a href="#registration">کارت بازرگانی</a></li>
+                        <li><a href="#services">ثبت مجوزها</a></li>
+                        <li><a href="#services">کارت بازرگانی</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -2566,113 +2158,36 @@
                     </ul>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; ۱۴۰۲ شهر راز - تمام حقوق محفوظ است.</p>
-                <p>طراحی شده با <span style="color: #d4af37;">❤</span> برای بهترین تجربه کاربری</p>
-            </div>
         </div>
     </footer>
+    
+    <!-- Static footer tag -->
+    <div class="static-footer">
+        <div class="container">
+            <p>طراحی شده با ❤ | Desigend by <a href="https://t.me/H0lwin_P" target="_blank" rel="noopener noreferrer">H0lwin</a></p>
+        </div>
+    </div>
+
+    <!-- ================================================================
+         SCROLL TO TOP BUTTON
+         ================================================================ -->
+    <button class="scroll-to-top" id="scrollToTop">↑</button>
 
     <script>
         // ================================================================
-        // PAGE LOADER
+        // SCROLL TO TOP FUNCTIONALITY
         // ================================================================
-        window.addEventListener('load', function() {
-            const loader = document.getElementById('pageLoader');
-            setTimeout(() => {
-                loader.classList.add('hidden');
-            }, 500);
-        });
-
-        // ================================================================
-        // NAVBAR SCROLL EFFECT
-        // ================================================================
-        const navbar = document.getElementById('navbar');
-        let lastScroll = 0;
-
-        window.addEventListener('scroll', function() {
-            const currentScroll = window.pageYOffset;
-            
-            if (currentScroll > 100) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScroll = currentScroll;
-        });
-
-        // ================================================================
-        // MOBILE MENU TOGGLE
-        // ================================================================
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const navLinks = document.getElementById('navLinks');
-
-        mobileMenuBtn.addEventListener('click', function() {
-            navLinks.classList.toggle('active');
-            this.textContent = navLinks.classList.contains('active') ? '✕' : '☰';
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', function() {
-                navLinks.classList.remove('active');
-                mobileMenuBtn.textContent = '☰';
-            });
-        });
-
-        // ================================================================
-        // SMOOTH SCROLL
-        // ================================================================
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    const offsetTop = target.offsetTop - 80;
-                    window.scrollTo({
-                        top: offsetTop,
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-
-        // ================================================================
-        // SCROLL ANIMATIONS - INTERSECTION OBSERVER
-        // ================================================================
-        const observerOptions = {
-            threshold: 0.1,
-            rootMargin: '0px 0px -50px 0px'
-        };
-
-        const observer = new IntersectionObserver(function(entries) {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                }
-            });
-        }, observerOptions);
-
-        // Observe all animated elements
-        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in').forEach(el => {
-            observer.observe(el);
-        });
-
-        // ================================================================
-        // SCROLL TO TOP BUTTON
-        // ================================================================
-        const scrollToTopBtn = document.getElementById('scrollToTop');
-
-        window.addEventListener('scroll', function() {
+        const scrollToTopButton = document.getElementById('scrollToTop');
+        
+        window.addEventListener('scroll', () => {
             if (window.pageYOffset > 300) {
-                scrollToTopBtn.classList.add('visible');
+                scrollToTopButton.classList.add('visible');
             } else {
-                scrollToTopBtn.classList.remove('visible');
+                scrollToTopButton.classList.remove('visible');
             }
         });
-
-        scrollToTopBtn.addEventListener('click', function() {
+        
+        scrollToTopButton.addEventListener('click', () => {
             window.scrollTo({
                 top: 0,
                 behavior: 'smooth'
@@ -2680,132 +2195,72 @@
         });
 
         // ================================================================
-        // SERVICE CARDS HOVER EFFECT
+        // MOBILE MENU TOGGLE
         // ================================================================
-        document.querySelectorAll('.service-card').forEach(card => {
-            card.addEventListener('mouseenter', function() {
-                this.style.transform = 'translateY(-8px) scale(1.02)';
-            });
-            
-            card.addEventListener('mouseleave', function() {
-                this.style.transform = 'translateY(0) scale(1)';
-            });
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const navLinks = document.querySelector('.nav-links');
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
 
         // ================================================================
-        // CONTACT FORM SUBMISSION
+        // SCROLL ANIMATIONS
         // ================================================================
-        const contactForm = document.getElementById('contactForm');
+        const animateOnScroll = () => {
+            const elements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const screenPosition = window.innerHeight / 1.3;
+                
+                if (elementPosition < screenPosition) {
+                    element.classList.add('visible');
+                }
+            });
+        };
         
-        if (contactForm) {
-            contactForm.addEventListener('submit', function(e) {
+        window.addEventListener('scroll', animateOnScroll);
+        window.addEventListener('load', animateOnScroll);
+
+        // ================================================================
+        // NAVBAR SCROLL EFFECT
+        // ================================================================
+        const navbar = document.querySelector('.navbar');
+        
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // ================================================================
+        // SMOOTH SCROLLING FOR NAVIGATION LINKS
+        // ================================================================
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
                 e.preventDefault();
                 
-                // Get form data
-                const formData = new FormData(this);
-                const name = formData.get('name');
-                const email = formData.get('email');
-                const message = formData.get('message');
-                
-                // Show success message (in a real application, you would send this to a server)
-                alert(`پیام شما با موفقیت ارسال شد!\n\nنام: ${name}\nایمیل: ${email}\nپیام: ${message}\n\nبه زودی با شما تماس خواهیم گرفت.`);
-                
-                // Reset form
-                this.reset();
-            });
-        }
-
-        // ================================================================
-        // PARALLAX EFFECT FOR HERO SHAPES
-        // ================================================================
-        window.addEventListener('scroll', function() {
-            const scrolled = window.pageYOffset;
-            const shapes = document.querySelectorAll('.hero-shape');
-            
-            shapes.forEach((shape, index) => {
-                const speed = (index + 1) * 0.5;
-                shape.style.transform = `translateY(${scrolled * speed}px)`;
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    navLinks.classList.remove('active');
+                }
             });
         });
-
-        // ================================================================
-        // COUNTER ANIMATION FOR STATS
-        // ================================================================
-        function animateCounter(element, target, duration = 2000) {
-            const start = 0;
-            const increment = target / (duration / 16);
-            let current = start;
-            
-            const timer = setInterval(() => {
-                current += increment;
-                if (current >= target) {
-                    element.textContent = target + '+';
-                    clearInterval(timer);
-                } else {
-                    element.textContent = Math.floor(current) + '+';
-                }
-            }, 16);
-        }
-
-        // Animate stats when they come into view
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const stat = entry.target;
-                    const value = parseInt(stat.textContent);
-                    animateCounter(stat, value);
-                    statsObserver.unobserve(stat);
-                }
-            });
-        }, { threshold: 0.5 });
-
-        document.querySelectorAll('.hero-stat strong').forEach(stat => {
-            statsObserver.observe(stat);
-        });
-
-        // ================================================================
-        // DYNAMIC YEAR IN FOOTER
-        // ================================================================
-        const currentYear = new Date().getFullYear();
-        const persianYear = currentYear - 621; // Convert to Persian calendar
-        document.querySelector('.footer-bottom p').innerHTML = 
-            `&copy; ${persianYear} شهر راز - تمام حقوق محفوظ است.`;
-
-        // ================================================================
-        // TESTIMONIALS CAROUSEL (Auto-rotate)
-        // ================================================================
-        let currentTestimonial = 0;
-        const testimonials = document.querySelectorAll('.testimonial-card');
-        
-        function rotateTestimonials() {
-            testimonials.forEach((card, index) => {
-                if (index === currentTestimonial) {
-                    card.style.transform = 'scale(1.05)';
-                    card.style.boxShadow = '0 20px 40px rgba(0, 0, 0, 0.15)';
-                } else {
-                    card.style.transform = 'scale(1)';
-                    card.style.boxShadow = '0 10px 15px -3px rgba(0, 0, 0, 0.1)';
-                }
-            });
-            
-            currentTestimonial = (currentTestimonial + 1) % testimonials.length;
-        }
-
-        // Rotate testimonials every 5 seconds
-        setInterval(rotateTestimonials, 5000);
-
-        // ================================================================
-        // CONSOLE MESSAGE
-        // ================================================================
-        console.log('%c🎉 خوش آمدید به شهر راز!', 'color: #d4af37; font-size: 20px; font-weight: bold;');
-        console.log('%cاین وب‌سایت با استفاده از تکنولوژی‌های مدرن طراحی شده است.', 'color: #1a365d; font-size: 14px;');
 
         // ================================================================
         // FAQ ACCORDION
         // ================================================================
         document.querySelectorAll('.faq-question').forEach(button => {
-            button.addEventListener('click', function(e) {
-                e.preventDefault();
+            button.addEventListener('click', function() {
                 const faqItem = this.closest('.faq-item');
                 const isActive = faqItem.classList.contains('active');
                 
@@ -2814,12 +2269,81 @@
                     item.classList.remove('active');
                 });
                 
-                // Open clicked item if it wasn't active
+                // Open clicked item if it wasn't already open
                 if (!isActive) {
                     faqItem.classList.add('active');
                 }
             });
         });
+
+        // ================================================================
+        // TESTIMONIAL FORM SUBMISSION
+        // ================================================================
+        const testimonialForm = document.getElementById('testimonial-form');
+        if (testimonialForm) {
+            testimonialForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const clientName = document.getElementById('client_name').value;
+                const clientRole = document.getElementById('client_role').value;
+                const rating = document.getElementById('rating').value;
+                const comment = document.getElementById('comment').value;
+                
+                // Create data object
+                const data = {
+                    client_name: clientName,
+                    client_role: clientRole,
+                    rating: rating,
+                    comment: comment
+                };
+                
+                // Send data to server
+                fetch('/submit-testimonial/', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-CSRFToken': getCookie('csrftoken')
+                    },
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(result => {
+                    if (result.success) {
+                        alert(result.message);
+                        // Reset form
+                        this.reset();
+                    } else {
+                        alert('خطا در ثبت نظر: ' + result.message);
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('خطا در ثبت نظر. لطفاً دوباره تلاش کنید.');
+                });
+            });
+        }
+        
+        // Helper function to get CSRF token
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== '') {
+                const cookies = document.cookie.split(';');
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+        // ================================================================
+        // CONSOLE MESSAGE
+        // ================================================================
+        console.log('%c🎉 خوش آمدید به شهر راز!', 'color: #d4af37; font-size: 20px; font-weight: bold;');
+        console.log('%cاین وب‌سایت با استفاده از تکنولوژی‌های مدرن طراحی شده است.', 'color: #1a365d; font-size: 14px;');
     </script>
 </body>
 </html>

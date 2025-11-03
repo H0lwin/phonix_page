@@ -21,4 +21,6 @@ from website import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name='home'),
+    path('test/', views.test_view, name='test'),
+    path('submit-testimonial/', views.SubmitTestimonialView.as_view(), name='submit_testimonial'),
 ]
