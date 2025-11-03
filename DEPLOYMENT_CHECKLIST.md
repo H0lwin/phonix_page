@@ -105,9 +105,16 @@ If you encounter a "Duplicate column name" error:
 
 1. This happens when some fields were already added to the database but Django's migration tracking is out of sync.
 
-2. The project includes migration 0013 that handles this issue by checking for existing columns before adding them.
+2. Use the fix script to resolve the issue:
+   ```bash
+   # On Linux/Mac:
+   ./fix_mysql_migrations.sh
+   
+   # On Windows:
+   fix_mysql_migrations.bat
+   ```
 
-3. If the error persists, you can reset the migration state:
+3. Or manually reset and reapply migrations:
    ```bash
    # Backup your database first
    mysqldump -u shahreraze_cms_user -p shahreraze_cms_db > backup.sql
