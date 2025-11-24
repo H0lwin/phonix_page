@@ -1,7 +1,8 @@
 from django.contrib import admin
 from .models import (
     SiteSettings, HeroSection, Statistic, Service, LoanCategory, LoanItem,
-    LeasingOffer, Category, ServiceItem, WhyUsFeature, Comparison, Testimonial, FAQ, ContactInfo
+    LeasingOffer, Category, ServiceItem, WhyUsFeature, Comparison, Testimonial,
+    FAQ, ContactInfo, CollaborationProcess, CollaborationStep
 )
 
 # 1. SiteSettings Admin
@@ -140,3 +141,35 @@ class ContactInfoAdmin(admin.ModelAdmin):
     list_display = ('phone', 'email')
     verbose_name = "اطلاعات تماس"
     verbose_name_plural = "اطلاعات تماس"
+
+
+# 13. Collaboration Process Admin
+class CollaborationStepInline(admin.TabularInline):
+    model = CollaborationStep
+    extra = 1
+    fields = ('title', 'description', 'order', 'icon')
+    ordering = ('order',)
+
+
+@admin.register(CollaborationProcess)
+class CollaborationProcessAdmin(admin.ModelAdmin):
+    list_display = ('title', 'cta_text')
+    inlines = [CollaborationStepInline]
+    fieldsets = (
+        ('اطلاعات اصلی', {
+            'fields': ('title', 'description')
+        }),
+        ('دکمه اقدام', {
+            'fields': ('cta_text', 'cta_link')
+        }),
+    )
+    verbose_name = "بخش فرآیند همکاری"
+    verbose_name_plural = "بخش‌های فرآیند همکاری"
+
+
+@admin.register(CollaborationStep)
+class CollaborationStepAdmin(admin.ModelAdmin):
+    list_display = ('title', 'process', 'order', 'icon')
+    list_filter = ('process',)
+    ordering = ('process', 'order')
+    search_fields = ('title', 'description')

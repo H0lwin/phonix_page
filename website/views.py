@@ -5,8 +5,20 @@ from django.utils.decorators import method_decorator
 from django.views import View
 import json
 from .models import (
-    SiteSettings, HeroSection, Statistic, Service, LoanCategory, 
-    LeasingOffer, Category, ServiceItem, WhyUsFeature, Comparison, Testimonial, FAQ, ContactInfo
+    SiteSettings,
+    HeroSection,
+    Statistic,
+    Service,
+    LoanCategory,
+    LeasingOffer,
+    Category,
+    ServiceItem,
+    WhyUsFeature,
+    Comparison,
+    Testimonial,
+    FAQ,
+    ContactInfo,
+    CollaborationProcess,
 )
 
 def index(request):
@@ -24,6 +36,7 @@ def index(request):
         'testimonials': Testimonial.objects.filter(status='approved'),
         'faq': FAQ.objects.filter(is_active=True),
         'contact': ContactInfo.objects.first(),
+        'collaboration_process': CollaborationProcess.objects.prefetch_related('steps').first(),
     }
     
     return render(request, 'index.html', context)

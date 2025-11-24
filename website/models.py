@@ -111,6 +111,7 @@ class LeasingOffer(models.Model):
     description = models.TextField(verbose_name="توضیحات", default="توضیحات پیشنهاد لیزینگ")
     features = models.TextField(help_text="هر ویژگی را در یک خط وارد کنید", verbose_name="ویژگی‌ها", default="ویژگی 1\nویژگی 2\nویژگی 3")
     stats = models.TextField(help_text="آمارها را به فرمت: برچسب:مقدار (در هر خط یکی) وارد کنید", verbose_name="آمارها", default="قیمت:10000\nمدت:24 ماه")
+    image = models.ImageField(upload_to='leasing/', blank=True, null=True, verbose_name="تصویر لیزینگ")
     
     def __str__(self):
         return str(self.title)
@@ -240,3 +241,50 @@ class ContactInfo(models.Model):
     class Meta:
         verbose_name = "اطلاعات تماس"
         verbose_name_plural = "اطلاعات تماس"
+
+
+# 13. Collaboration Process Section
+class CollaborationProcess(models.Model):
+    title = models.CharField(max_length=150, verbose_name="عنوان بخش", default="فرآیند همکاری با ما")
+    description = models.TextField(
+        verbose_name="توضیحات",
+        default="مراحل ساده برای شروع همکاری با تیم شهر راز.",
+        help_text="توضیح کلی بخش، در بالای مراحل نمایش داده می‌شود.",
+    )
+    cta_text = models.CharField(
+        max_length=100,
+        verbose_name="متن دکمه",
+        default="شروع همکاری",
+    )
+    cta_link = models.URLField(
+        verbose_name="لینک دکمه",
+        default="#contact",
+    )
+
+    def __str__(self):
+        return self.title
+
+    class Meta:
+        verbose_name = "بخش فرآیند همکاری"
+        verbose_name_plural = "بخش فرآیند همکاری"
+
+
+class CollaborationStep(models.Model):
+    process = models.ForeignKey(
+        CollaborationProcess,
+        related_name="steps",
+        on_delete=models.CASCADE,
+        verbose_name="بخش فرآیند",
+    )
+    title = models.CharField(max_length=100, verbose_name="عنوان مرحله", default="مرحله")
+    description = models.TextField(verbose_name="توضیحات مرحله", default="توضیح مختصر از این مرحله.")
+    order = models.PositiveIntegerField(verbose_name="ترتیب", default=0)
+    icon = models.CharField(max_length=50, blank=True, verbose_name="آیکون", default="✅")
+
+    class Meta:
+        ordering = ["order"]
+        verbose_name = "مرحله همکاری"
+        verbose_name_plural = "مراحل همکاری"
+
+    def __str__(self):
+        return f"{self.process.title} - {self.title}"
