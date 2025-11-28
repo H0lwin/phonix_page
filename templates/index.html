@@ -1389,14 +1389,12 @@
                 padding: var(--spacing-sm);
             }
 
-            /* hide desktop leasing section on mobile */
-            .leasing {
+            .leasing.desktop-visible {
                 display: none !important;
             }
 
-            /* show mobile leasing section on tablets and smaller */
-            .leasing-mobile {
-                display: block;
+            .leasing-mobile.mobile-visible {
+                display: block !important;
             }
 
             .leasing-content {
@@ -1746,6 +1744,10 @@
             display: block;
         }
 
+        .leasing-mobile.mobile-visible {
+            display: none;
+        }
+
         .leasing::before {
             content: '';
             position: absolute;
@@ -1920,7 +1922,7 @@
 
         /* mobile leasing section only shows on small screens */
         .leasing-mobile.mobile-visible {
-            display: block;
+            display: none;
         }
 
         .leasing-mobile .container {
