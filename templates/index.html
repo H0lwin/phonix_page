@@ -118,15 +118,7 @@
             position: relative;
         }
 
-        .section-title::after {
-            content: '';
-            display: block;
-            width: 80px;
-            height: 4px;
-            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
-            margin: var(--spacing-md) auto 0;
-            border-radius: var(--radius-full);
-        }
+        /* removed the ::after pseudo-element line under section titles */
 
         .section-subtitle {
             font-size: var(--font-size-lg);
@@ -712,7 +704,8 @@
             transition: all var(--transition-base);
             position: relative;
             border-top: 4px solid var(--color-accent);
-            flex: 0 0 clamp(280px, 32%, 360px);
+            /* make testimonial cards responsive on mobile */
+            flex: 0 0 clamp(250px, 85vw, 360px);
             scroll-snap-align: center;
             cursor: pointer;
             min-height: 300px;
@@ -1254,6 +1247,10 @@
             gap: var(--spacing-xs);
             flex-wrap: wrap;
         }
+        .navbar-brand{
+            text-decoration: none;
+        }
+
 
         .static-footer a {
             color: var(--color-accent-light);
@@ -1391,22 +1388,101 @@
             .comparison-table td {
                 padding: var(--spacing-sm);
             }
+
+            /* hide desktop leasing section on mobile */
+            .leasing {
+                display: none !important;
+            }
+
+            /* show mobile leasing section on tablets and smaller */
+            .leasing-mobile {
+                display: block;
+            }
+
+            .leasing-content {
+                grid-template-columns: 1fr;
+            }
+
+            .leasing-benefits {
+                grid-template-columns: 1fr;
+            }
+
+            .leasing-image {
+                min-height: 300px;
+            }
+
+            .leasing-stat-cards {
+                inset: var(--spacing-md);
+                grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+                grid-auto-rows: minmax(150px, 1fr);
+            }
+
+            .leasing-stat-card {
+                min-width: 0;
+                min-height: 150px;
+            }
+
+            .process-steps {
+                grid-template-columns: 1fr;
+            }
+
+            .loan-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .registration-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trust-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .cta h2 {
+                font-size: var(--font-size-3xl);
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-buttons .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .slider-btn {
+                display: none;
+            }
+
+            /* testimonial cards responsive on mobile */
+            .testimonial-card {
+                flex: 0 0 100%;
+                min-height: auto;
+            }
+
+            .testimonials-slider {
+                padding: 0 var(--spacing-md);
+            }
         }
 
         @media (max-width: 480px) {
-            :root {
-                --font-size-5xl: 2rem;
-                --font-size-4xl: 1.75rem;
-                --font-size-3xl: 1.5rem;
+            .leasing-stat-cards {
+                grid-template-columns: 1fr;
+            }
+            
+            .leasing-stat-card {
+                min-height: 140px;
             }
 
-            .hero {
-                padding: calc(60px + var(--spacing-xl)) 0 var(--spacing-xl);
+            /* mobile stats grid for leasing */
+            .leasing-mobile-stats {
+                grid-template-columns: 1fr;
             }
 
-            .btn {
-                width: 100%;
-                justify-content: center;
+            .section-title {
+                font-size: var(--font-size-2xl);
             }
         }
 
@@ -1654,13 +1730,20 @@
         }
 
         /* ================================================================
-           LEASING SECTION
+           LEASING SECTION (Desktop Only)
            ================================================================ */
+        {% if leasing %}
+        /* hide leasing section on desktop by default, show via media query */
         .leasing {
             padding: var(--spacing-3xl) 0;
             background-color: var(--color-background);
             position: relative;
             overflow: hidden;
+            display: none;
+        }
+
+        .leasing.desktop-visible {
+            display: block;
         }
 
         .leasing::before {
@@ -1821,6 +1904,123 @@
             font-size: var(--font-size-sm);
             color: var(--color-text-muted);
         }
+        {% endif %}
+
+        /* ================================================================
+           MOBILE LEASING SECTION (Mobile Only)
+           ================================================================ */
+        /* new mobile-only leasing section with responsive layout */
+        {% if leasing %}
+        .leasing-mobile {
+            padding: var(--spacing-3xl) 0;
+            background: linear-gradient(135deg, var(--color-primary-dark), var(--color-primary));
+            color: white;
+            display: none;
+        }
+
+        /* mobile leasing section only shows on small screens */
+        .leasing-mobile.mobile-visible {
+            display: block;
+        }
+
+        .leasing-mobile .container {
+            padding: 0 var(--spacing-md);
+        }
+
+        .leasing-mobile h3 {
+            font-size: var(--font-size-2xl);
+            font-weight: 800;
+            margin-bottom: var(--spacing-md);
+            color: white;
+        }
+
+        .leasing-mobile-description {
+            font-size: var(--font-size-lg);
+            line-height: 1.8;
+            margin-bottom: var(--spacing-lg);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .leasing-mobile-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+
+        .leasing-mobile-stat-item {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: var(--spacing-lg);
+            border-radius: var(--radius-lg);
+            text-align: center;
+            backdrop-filter: blur(10px);
+            transition: all var(--transition-base);
+        }
+
+        .leasing-mobile-stat-item:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: var(--color-accent);
+            transform: translateY(-3px);
+        }
+
+        .leasing-mobile-stat-item .stat-value {
+            font-size: var(--font-size-2xl);
+            font-weight: 800;
+            color: var(--color-accent);
+            display: block;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .leasing-mobile-stat-item .stat-label {
+            font-size: var(--font-size-sm);
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .leasing-mobile-features {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+
+        .leasing-mobile-feature {
+            background: rgba(255, 255, 255, 0.08);
+            border-left: 4px solid var(--color-accent);
+            padding: var(--spacing-md);
+            border-radius: var(--radius-md);
+            display: flex;
+            gap: var(--spacing-sm);
+            align-items: flex-start;
+            transition: all var(--transition-base);
+        }
+
+        .leasing-mobile-feature:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateX(-5px);
+        }
+
+        .leasing-mobile-feature-icon {
+            color: var(--color-accent);
+            font-size: var(--font-size-xl);
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .leasing-mobile-feature-text {
+            font-size: var(--font-size-sm);
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .leasing-mobile-cta {
+            margin-top: var(--spacing-lg);
+        }
+
+        .leasing-mobile-cta .btn {
+            width: 100%;
+            justify-content: center;
+        }
+        {% endif %}
 
         /* ================================================================
            TRUST SECTION
@@ -2023,6 +2223,68 @@
         }
 
         /* ================================================================
+           COMPANIES SECTION
+           ================================================================ */
+        .companies {
+            padding: var(--spacing-3xl) 0;
+            background-color: var(--color-background);
+        }
+
+        .companies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-2xl);
+            margin-top: var(--spacing-2xl);
+        }
+
+        .company-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: var(--spacing-md);
+            padding: var(--spacing-2xl);
+            background: var(--color-surface);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+            transition: all var(--transition-base);
+            text-decoration: none;
+            cursor: pointer;
+            border: 2px solid transparent;
+            min-height: 250px;
+        }
+
+        .company-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--color-accent);
+        }
+
+        .company-logo {
+            width: 120px;
+            height: 120px;
+            object-fit: contain;
+            filter: grayscale(30%);
+            transition: filter var(--transition-base);
+        }
+
+        .company-card:hover .company-logo {
+            filter: grayscale(0%);
+        }
+
+        .company-name {
+            font-size: var(--font-size-lg);
+            font-weight: 600;
+            color: var(--color-primary);
+            text-align: center;
+            transition: color var(--transition-base);
+        }
+
+        .company-card:hover .company-name {
+            color: var(--color-accent);
+        }
+
+        /* ================================================================
            RESPONSIVE UPDATES
            ================================================================ */
         @media (max-width: 968px) {
@@ -2095,6 +2357,16 @@
                 padding: var(--spacing-sm);
             }
 
+            /* hide desktop leasing section on mobile */
+            .leasing {
+                display: none !important;
+            }
+
+            /* show mobile leasing section on tablets and smaller */
+            .leasing-mobile {
+                display: block;
+            }
+
             .leasing-content {
                 grid-template-columns: 1fr;
             }
@@ -2151,6 +2423,16 @@
             .slider-btn {
                 display: none;
             }
+
+            /* testimonial cards responsive on mobile */
+            .testimonial-card {
+                flex: 0 0 100%;
+                min-height: auto;
+            }
+
+            .testimonials-slider {
+                padding: 0 var(--spacing-md);
+            }
         }
 
         @media (max-width: 480px) {
@@ -2161,6 +2443,25 @@
             .leasing-stat-card {
                 min-height: 140px;
             }
+
+            /* mobile stats grid for leasing */
+            .leasing-mobile-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: var(--font-size-2xl);
+            }
+        }
+
+        .section-title::after {
+            content: '';
+            display: none;
+            width: 80px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-accent), var(--color-accent-light));
+            margin: var(--spacing-md) auto 0;
+            border-radius: var(--radius-full);
         }
     </style>
     
@@ -2178,8 +2479,8 @@
                 </div>
             </a>
             <ul class="nav-links">
-                <li><a href="#services">خدمات</a></li>
-                <li><a href="#loan-services">وام‌ها</a></li>
+                <li><a href="#services">حقوقی</a></li>
+                <li><a href="#loan-services">مالی</a></li>
                 <li><a href="#leasing">لیزینگ</a></li>
                 <li><a href="#registration">ثبت</a></li>
                 <li><a href="#process">فرآیند</a></li>
@@ -2230,7 +2531,7 @@
          ================================================================ -->
     <section id="services" class="services">
         <div class="container">
-            <h2 class="section-title fade-in">خدمات تخصصی ما</h2>
+            <h2 class="section-title fade-in">خدمات حقوقی ما</h2>
             <p class="section-subtitle fade-in">مجموعه کامل خدمات مالی و حقوقی در یک مکان</p>
             <div class="services-grid">
                 {% for service in services %}
@@ -2249,8 +2550,8 @@
          ================================================================ -->
     <section class="loan-services" id="loan-services">
         <div class="container">
-            <h2 class="section-title fade-in">انواع وام‌های قابل معامله</h2>
-            <p class="section-subtitle fade-in">خرید و فروش انواع وام با بهترین قیمت و شرایط</p>
+            <h2 class="section-title fade-in">خدمات مالی</h2>
+            <p class="section-subtitle fade-in">خدمات مالی با بهترین شرایط</p>
             <div class="loan-grid">
                 {% for category in loan_categories %}
                 <div class="loan-card fade-in">
@@ -2271,10 +2572,10 @@
     </section>
 
     <!-- ================================================================
-         LEASING SECTION
+         LEASING SECTION (Desktop Only)
          ================================================================ -->
     {% if leasing %}
-    <section class="leasing" id="leasing">
+    <section id="leasing" class="leasing desktop-visible">
         <div class="container">
             <div class="leasing-content">
                 <div class="leasing-info slide-in-right">
@@ -2288,7 +2589,7 @@
                         </div>
                         {% endfor %}
                     </div>
-                        </div>
+                </div>
                 <div class="leasing-image slide-in-left">
                     {% if leasing.image %}
                     <img src="{{ leasing.image.url }}" alt="{{ leasing.title }}">
@@ -2305,12 +2606,56 @@
                         <div class="leasing-stat-card">
                             <span class="stat-value">{{ stat.value }}</span>
                             <span class="stat-label">{{ stat.label }}</span>
-                </div>
+                        </div>
                         {% endfor %}
                     </div>
                     {% endif %}
                     {% endwith %}
                 </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- ================================================================
+         MOBILE LEASING SECTION (Mobile Only)
+         ================================================================ -->
+    <!-- new mobile-only leasing section with responsive layout -->
+    {% if leasing %}
+    <section class="leasing-mobile mobile-visible">
+        <div class="container">
+            <h3>{{ leasing.title }}</h3>
+            <p class="leasing-mobile-description">{{ leasing.description }}</p>
+            
+            <!-- Statistics Grid -->
+            {% with stats_list=leasing.get_stats_list %}
+            {% if stats_list %}
+            <div class="leasing-mobile-stats">
+                {% for stat in stats_list %}
+                <div class="leasing-mobile-stat-item scale-in">
+                    <span class="stat-value">{{ stat.value }}</span>
+                    <span class="stat-label">{{ stat.label }}</span>
+                </div>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% endwith %}
+            
+            <!-- Features List -->
+            <div class="leasing-mobile-features">
+                {% for feature in leasing.features.splitlines %}
+                <div class="leasing-mobile-feature slide-in-right">
+                    <div class="leasing-mobile-feature-icon">✓</div>
+                    <div class="leasing-mobile-feature-text">{{ feature }}</div>
+                </div>
+                {% endfor %}
+            </div>
+            
+            <!-- CTA Button -->
+            <div class="leasing-mobile-cta">
+                <a href="#contact" class="btn btn-primary btn-lg btn-block">
+                    <span>📞</span> درخواست خدمات لیزینگ
+                </a>
             </div>
         </div>
     </section>
@@ -2533,6 +2878,27 @@
     </section>
 
     <!-- ================================================================
+         COMPANIES SECTION
+         ================================================================ -->
+    {% if companies %}
+    <section id="companies" class="companies">
+        <div class="container">
+            <h2 class="section-title fade-in">شرکت‌های مرتبط</h2>
+            <p class="section-subtitle fade-in">نمای‌ندگان و شرکای قابل اعتماد ما در صنعت</p>
+            
+            <div class="companies-grid">
+                {% for company in companies %}
+                <a href="{{ company.link }}" target="_blank" rel="noopener noreferrer" class="company-card scale-in">
+                    <img src="{{ company.logo.url }}" alt="{{ company.name }}" class="company-logo">
+                    <h3 class="company-name">{{ company.name }}</h3>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <!-- ================================================================
          CTA SECTION
          ================================================================ -->
     <section class="cta">
@@ -2614,7 +2980,7 @@
                 <div class="footer-section">
                     <h5>خدمات</h5>
                     <ul>
-                        <li><a href="#services">خرید و فروش وام</a></li>
+                        <li><a href="#services">خدمات مالی</a></li>
                         <li><a href="#services">لیزینگ خودرو</a></li>
                         <li><a href="#services">ثبت شرکت</a></li>
                         <li><a href="#services">خدمات حقوقی</a></li>

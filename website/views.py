@@ -19,6 +19,7 @@ from .models import (
     FAQ,
     ContactInfo,
     CollaborationProcess,
+    Company,
 )
 
 def index(request):
@@ -37,6 +38,7 @@ def index(request):
         'faq': FAQ.objects.filter(is_active=True),
         'contact': ContactInfo.objects.first(),
         'collaboration_process': CollaborationProcess.objects.prefetch_related('steps').first(),
+        'companies': Company.objects.filter(is_active=True),
     }
     
     return render(request, 'index.html', context)

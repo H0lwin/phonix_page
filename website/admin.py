@@ -2,7 +2,7 @@ from django.contrib import admin
 from .models import (
     SiteSettings, HeroSection, Statistic, Service, LoanCategory, LoanItem,
     LeasingOffer, Category, ServiceItem, WhyUsFeature, Comparison, Testimonial,
-    FAQ, ContactInfo, CollaborationProcess, CollaborationStep
+    FAQ, ContactInfo, CollaborationProcess, CollaborationStep, Company
 )
 
 # 1. SiteSettings Admin
@@ -173,3 +173,13 @@ class CollaborationStepAdmin(admin.ModelAdmin):
     list_filter = ('process',)
     ordering = ('process', 'order')
     search_fields = ('title', 'description')
+
+
+@admin.register(Company)
+class CompanyAdmin(admin.ModelAdmin):
+    list_display = ('name', 'order', 'is_active')
+    list_editable = ('order', 'is_active')
+    ordering = ('order',)
+    search_fields = ('name',)
+    verbose_name = "شرکت"
+    verbose_name_plural = "شرکت‌ها"

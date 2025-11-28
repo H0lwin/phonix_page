@@ -288,3 +288,20 @@ class CollaborationStep(models.Model):
 
     def __str__(self):
         return f"{self.process.title} - {self.title}"
+
+
+class Company(models.Model):
+    name = models.CharField(max_length=150, verbose_name="نام شرکت", default="شرکت")
+    logo = models.ImageField(upload_to='company_logos/', verbose_name="لوگو شرکت")
+    link = models.URLField(verbose_name="لینک شرکت", default="#")
+    order = models.PositiveIntegerField(verbose_name="ترتیب", default=0)
+    is_active = models.BooleanField(verbose_name="فعال", default=True)
+    created_at = models.DateTimeField(default=timezone.now, verbose_name="تاریخ ایجاد")
+
+    def __str__(self):
+        return str(self.name)
+
+    class Meta:
+        ordering = ["order"]
+        verbose_name = "شرکت"
+        verbose_name_plural = "شرکت‌ها"
