@@ -8,6 +8,9 @@
     <meta name="description" content="{{ settings.description }}">
     <meta name="keywords" content="{{ settings.meta_keywords }}">
     <meta name="author" content="{{ settings.site_name }}">
+    {% if settings.favicon %}
+    <link rel="icon" type="image/x-icon" href="{{ settings.favicon.url }}">
+    {% endif %}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@100..900&display=swap" rel="stylesheet">
@@ -214,6 +217,13 @@
 
         .logo-icon {
             font-size: var(--font-size-3xl);
+            filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
+        }
+
+        .logo-img {
+            height: 50px;
+            max-width: 150px;
+            object-fit: contain;
             filter: drop-shadow(0 2px 4px rgba(212, 175, 55, 0.3));
         }
 
@@ -2475,10 +2485,14 @@
     <nav class="navbar">
         <div class="container">
             <a href="#" class="navbar-brand">
+                {% if settings.logo %}
+                <img src="{{ settings.logo.url }}" alt="{{ settings.site_name }}" class="logo-img">
+                {% else %}
                 <div class="logo">
                     <span class="logo-icon">🏛️</span>
                     <span>{{ settings.site_name }}</span>
                 </div>
+                {% endif %}
             </a>
             <ul class="nav-links">
                 <li><a href="#services">حقوقی</a></li>
