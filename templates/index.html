@@ -2703,8 +2703,8 @@
                 </div>
             </div>
             <div class="hero-image">
-                {% if settings.logo %}
-                <img src="{{ settings.logo.url }}" alt="{{ settings.site_name }}" style="height: 300px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.2)); animation: float 3s ease-in-out infinite;">
+                {% if hero.background_image %}
+                <img src="{{ hero.background_image.url }}" alt="{{ hero.headline }}" style="height: 100%; width: 100%; object-fit: cover;">
                 {% else %}
                 <div class="hero-shape shape-primary"></div>
                 <div class="hero-shape shape-secondary"></div>
