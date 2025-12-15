@@ -2654,7 +2654,11 @@
         <div class="container">
             <a href="#" class="navbar-brand">
                 <div class="logo">
+                    {% if settings.logo %}
+                    <img src="{{ settings.logo.url }}" alt="{{ settings.site_name }}" class="logo-icon" style="height: 50px; width: auto; max-width: 150px; object-fit: contain;">
+                    {% else %}
                     <span class="logo-icon">🏛️</span>
+                    {% endif %}
                     <span>{{ settings.site_name }}</span>
                 </div>
             </a>
@@ -2699,8 +2703,12 @@
                 </div>
             </div>
             <div class="hero-image">
+                {% if settings.logo %}
+                <img src="{{ settings.logo.url }}" alt="{{ settings.site_name }}" style="height: 300px; width: auto; max-width: 100%; object-fit: contain; filter: drop-shadow(0 10px 30px rgba(212, 175, 55, 0.2)); animation: float 3s ease-in-out infinite;">
+                {% else %}
                 <div class="hero-shape shape-primary"></div>
                 <div class="hero-shape shape-secondary"></div>
+                {% endif %}
             </div>
         </div>
     </section>
@@ -3286,6 +3294,9 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
+                    {% if settings.logo %}
+                    <img src="{{ settings.logo.url }}" alt="{{ settings.site_name }}" style="height: 60px; width: auto; max-width: 180px; margin-bottom: 15px; object-fit: contain;">
+                    {% endif %}
                     <h5>{{ settings.site_name }}</h5>
                     <p>{{ settings.footer_text }}</p>
                 </div>
