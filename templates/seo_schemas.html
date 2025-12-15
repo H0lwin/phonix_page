@@ -1,0 +1,265 @@
+<!-- Advanced SEO Schema Markup Templates -->
+
+<!-- Global Site Search Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "{{ settings.site_name }}",
+    "url": "https://citysecret.ir/",
+    "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://citysecret.ir/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+    }
+}
+</script>
+
+<!-- Company/Organization Complete Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ProfessionalService",
+    "name": "{{ settings.site_name }}",
+    "url": "https://citysecret.ir/",
+    "image": "{% if settings.logo %}https://citysecret.ir{{ settings.logo.url }}{% endif %}",
+    "description": "{{ settings.description }}",
+    "telephone": "{{ settings.phone_main }}",
+    "email": "{{ settings.email_main }}",
+    "foundingDate": "2015",
+    "areaServed": {
+        "@type": "Country",
+        "name": "Iran"
+    },
+    "priceRange": "$$",
+    "knowsAbout": [
+        "حقوق مدنی",
+        "حقوق تجارت",
+        "مشاوره مالی",
+        "خدمات وام",
+        "لیزینگ خودرو",
+        "ثبت شرکت"
+    ]
+}
+</script>
+
+<!-- Multiple Office Locations Schema -->
+{% if settings.head_office_address %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ settings.site_name }} - دفتر مرکزی",
+    "url": "https://citysecret.ir/",
+    "telephone": "{{ settings.phone_main }}",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ settings.head_office_address }}",
+        "addressRegion": "Tehran",
+        "addressCountry": "IR"
+    },
+    "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+    },
+    "image": "{% if settings.logo %}https://citysecret.ir{{ settings.logo.url }}{% endif %}"
+}
+</script>
+{% endif %}
+
+{% if settings.branch_office_address %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ settings.site_name }} - شعبه",
+    "url": "https://citysecret.ir/",
+    "telephone": "{{ settings.phone_main }}",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ settings.branch_office_address }}",
+        "addressRegion": "Tehran",
+        "addressCountry": "IR"
+    },
+    "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+        "opens": "09:00",
+        "closes": "18:00"
+    }
+}
+</script>
+{% endif %}
+
+<!-- Loan Services Schema -->
+{% if loan_categories %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "خدمات وام",
+    "itemListElement": [
+    {% for category in loan_categories %}
+        {
+            "@type": "ListItem",
+            "position": {{ forloop.counter }},
+            "name": "{{ category.title|escapejs }}",
+            "description": "{{ category.description|escapejs }}",
+            "item": {
+                "@type": "FinancialProduct",
+                "name": "{{ category.title|escapejs }}",
+                "description": "{{ category.description|escapejs }}",
+                "provider": {
+                    "@type": "FinancialService",
+                    "name": "{{ settings.site_name|escapejs }}"
+                }
+            }
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+</script>
+{% endif %}
+
+<!-- Service Category Schema -->
+{% if registration_categories %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "name": "خدمات ثبتی",
+    "itemListElement": [
+    {% for category in registration_categories %}
+        {
+            "@type": "ListItem",
+            "position": {{ forloop.counter }},
+            "name": "{{ category.name|escapejs }}",
+            "description": "{{ category.description|escapejs }}",
+            "item": {
+                "@type": "LegalService",
+                "name": "{{ category.name|escapejs }}",
+                "description": "{{ category.description|escapejs }}",
+                "areaServed": "IR",
+                "provider": {
+                    "@type": "LegalService",
+                    "name": "{{ settings.site_name|escapejs }}"
+                }
+            }
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+</script>
+{% endif %}
+
+<!-- Features/Benefits Schema -->
+{% if features %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Thing",
+    "name": "{{ settings.site_name }} - مزایا و ویژگی‌ها",
+    "description": "دلایل انتخاب شهر راز به عنوان بهترین مشاور حقوقی و مالی",
+    "itemListElement": [
+    {% for feature in features %}
+        {
+            "@type": "Thing",
+            "position": {{ forloop.counter }},
+            "name": "{{ feature.title|escapejs }}",
+            "description": "{{ feature.description|escapejs }}"
+        }{% if not forloop.last %},{% endif %}
+    {% endfor %}
+    ]
+}
+</script>
+{% endif %}
+
+<!-- Testimonials Aggregate Rating -->
+{% if testimonials %}
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "{{ settings.site_name }}",
+    "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "{{ testimonials|length }}",
+        "bestRating": "5",
+        "worstRating": "1"
+    }
+}
+</script>
+{% endif %}
+
+<!-- Contact Point Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "ContactPoint",
+    "contactType": "Customer Service",
+    "telephone": "{{ settings.phone_main }}",
+    "email": "{{ settings.email_main }}",
+    "url": "https://citysecret.ir/#contact",
+    "areaServed": [
+        "IR-14",
+        "IR"
+    ],
+    "availableLanguage": "fa"
+}
+</script>
+
+<!-- Action Schema (For Rich Snippets) -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Thing",
+    "potentialAction": {
+        "@type": "CommunicateAction",
+        "name": "تماس برای مشاوره",
+        "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://citysecret.ir/#contact",
+            "actionPlatform": [
+                "http://schema.org/DesktopWebPlatform",
+                "http://schema.org/MobileWebPlatform"
+            ]
+        }
+    }
+}
+</script>
+
+<!-- Legal Service Schema -->
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "LegalService",
+    "name": "{{ settings.site_name }}",
+    "url": "https://citysecret.ir/",
+    "image": "{% if settings.logo %}https://citysecret.ir{{ settings.logo.url }}{% endif %}",
+    "description": "{{ settings.description }}",
+    "telephone": "{{ settings.phone_main }}",
+    "email": "{{ settings.email_main }}",
+    "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "{{ settings.head_office_address }}",
+        "addressRegion": "Tehran",
+        "postalCode": "",
+        "addressCountry": "IR"
+    },
+    "priceRange": "$$"
+}
+</script>
+
+<!-- Speed Optimization Preload/Prefetch -->
+<link rel="dns-prefetch" href="https://fonts.googleapis.com">
+<link rel="dns-prefetch" href="https://fonts.gstatic.com">
+<link rel="dns-prefetch" href="https://cdn.jsdelivr.net">
+<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="prefetch" href="https://citysecret.ir/sitemap.xml">

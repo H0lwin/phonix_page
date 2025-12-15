@@ -25,6 +25,8 @@ urlpatterns = [
     path('', views.index, name='home'),
     path('test/', views.test_view, name='test'),
     path('submit-testimonial/', views.SubmitTestimonialView.as_view(), name='submit_testimonial'),
+    path('robots.txt', views.robots_txt, name='robots_txt'),
+    path('sitemap.xml', views.sitemap_xml, name='sitemap_xml'),
 ]
 
 if settings.DEBUG:

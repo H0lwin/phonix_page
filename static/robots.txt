@@ -1,0 +1,34 @@
+# Robots.txt for SEO optimization
+
+# Allow all bots
+User-agent: *
+Allow: /
+Allow: /static/
+Allow: /media/
+
+# Disallow unnecessary paths
+Disallow: /admin/
+Disallow: /static/admin/
+Disallow: /api/
+Disallow: /*.json$
+Disallow: /*?*=*
+Disallow: /*?*sort=*
+
+# Crawl delay
+Crawl-delay: 1
+
+# Request rate
+Request-rate: 30/60
+
+# Sitemap location - CRITICAL for SEO
+Sitemap: https://citysecret.ir/static/sitemap.xml
+
+# Specific rules for Google Bot (favorable)
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Specific rules for Bing
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
