@@ -2675,6 +2675,7 @@
         </div>
     </nav>
 
+    <main>
     <!-- ================================================================
          HERO SECTION
          ================================================================ -->
@@ -2772,7 +2773,7 @@
                 {% for category in loan_categories %}
                 <div class="loan-card fade-in">
                     <div class="loan-icon">{{ category.icon }}</div>
-                    <h4>{{ category.title }}</h4>
+                    <h3>{{ category.title }}</h3>
                     <p>{{ category.description }}</p>
                     <ul class="loan-features">
                         {% for item in category.loanitem_set.all %}
@@ -2918,12 +2919,12 @@
                     {% if step.icon %}
                     <span class="process-icon">{{ step.icon }}</span>
                     {% endif %}
-                    <h4>{{ step.title }}</h4>
+                    <h3>{{ step.title }}</h3>
                     <p>{{ step.description }}</p>
                 </div>
                 {% empty %}
                 <div class="process-step scale-in">
-                    <h4>مرحله‌ای ثبت نشده است</h4>
+                    <h3>مرحله‌ای ثبت نشده است</h3>
                     <p>به زودی مراحل فرآیند همکاری در این بخش نمایش داده می‌شود.</p>
                 </div>
                 {% endfor %}
@@ -2950,7 +2951,7 @@
                 {% for feature in features %}
                 <div class="feature-item scale-in">
                     <div class="feature-icon">{{ feature.icon }}</div>
-                    <h4>{{ feature.title }}</h4>
+                    <h3>{{ feature.title }}</h3>
                     <p>{{ feature.description }}</p>
                 </div>
                 {% endfor %}
@@ -3183,7 +3184,7 @@
                 {% for item in faq %}
                 <div class="faq-item fade-in">
                     <button class="faq-question">
-                        <h4>{{ item.question }}</h4>
+                        <h3>{{ item.question }}</h3>
                         <span class="faq-icon">▼</span>
                     </button>
                     <div class="faq-answer">
@@ -3250,17 +3251,17 @@
             <div class="contact-info">
                 <div class="contact-item slide-in-right">
                     <div class="contact-icon">📞</div>
-                    <h4>تلفن تماس</h4>
+                    <h3>تلفن تماس</h3>
                     <p>{{ contact.phone|linebreaksbr }}</p>
                 </div>
                 <div class="contact-item slide-in-right">
                     <div class="contact-icon">✉️</div>
-                    <h4>ایمیل</h4>
+                    <h3>ایمیل</h3>
                     <p>{{ contact.email|linebreaksbr }}</p>
                 </div>
                 <div class="contact-item slide-in-right">
                     <div class="contact-icon">🕐</div>
-                    <h4>ساعات کاری</h4>
+                    <h3>ساعات کاری</h3>
                     <p>{{ settings.work_hours|linebreaksbr }}</p>
                 </div>
             </div>
@@ -3286,6 +3287,7 @@
         </div>
     </section>
     {% endif %}
+    </main>
 
     <!-- ================================================================
          FOOTER
